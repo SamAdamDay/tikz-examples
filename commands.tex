@@ -1,0 +1,292 @@
+%!TEX root = tikz-figures.tex
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Specific Shorthands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% General Mathematics
+\newcommand{\id}{\ensuremath{\mathrm{id}}}
+\DeclareMathOperator{\dom}{\mathrm{dom}}
+\DeclareMathOperator{\cod}{\mathrm{cod}}
+
+% Common Names
+\DeclareMathOperator{\Rank}{\mathrm{Rank}}
+
+% Set Theory
+\newcommand{\oo}{\ensuremath{\omega_1}}
+
+% Modal Logic
+\newcommand{\ML}{\ensuremath{\mathrm{ML}}}
+\newcommand{\Sf}{\ensuremath{\mathrm{S4}}}
+
+% Model Theory
+\DeclareMathOperator{\Mod}{\mathrm{Mod}}
+\DeclareMathOperator{\Th}{\mathrm{Th}}
+\DeclareMathOperator{\Diag}{\mathrm{Diag}}
+\DeclareMathOperator{\CDiag}{\mathrm{CDiag}}
+\DeclareMathOperator{\AtTp}{\mathrm{AtTp}}
+\DeclareMathOperator{\Tp}{\mathrm{Tp}}
+\DeclareMathOperator{\EF}{\mathrm{EF}}
+
+% Category Theory
+\DeclareMathOperator{\Hom}{\mathrm{Hom}}
+
+% Topology
+\DeclareMathOperator{\Opens}{\mathcal{O}}
+\DeclareMathOperator{\Closeds}{\mathcal{C}}
+\DeclareMathOperator{\Int}{\mathrm{Int}}
+\DeclareMathOperator{\Cl}{\mathrm{Cl}}
+\newcommand{\comp}[1]{\ensuremath{#1^\mathsf{C}}}
+
+% Geometry
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+
+% Number theory
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\DeclareMathOperator{\lcm}{\mathrm{lcm}}
+\DeclareMathOperator{\Den}{\mathrm{Den}}
+
+% Single letters
+\newcommand{\Lo}{\ensuremath{\mathcal{L}}}
+\newcommand{\C}{\ensuremath{\mathbf{C}}}
+\newcommand{\D}{\ensuremath{\mathbf{D}}}
+\newcommand{\W}{\ensuremath{\mathcal{W}}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\renewcommand{\P}{\ensuremath{\mathcal{P}}}
+
+% General
+\newcommand{\N}{\mathbb N}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\NNp}{\mathbb N^{>0}}
+\newcommand{\inv}[1]{{#1}^{-1}}
+\newcommand{\invfs}[1]{\inv f\{#1\}}
+
+\newcommand{\T}{\ensuremath{\mathcal{T}}}
+\newcommand{\F}{\ensuremath{\mathfrak{F}}}
+% \renewcommand{\S}{\ensuremath{\mathrm{S}}}
+\newcommand{\E}{\ensuremath{\mathrm{E}}}
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\vDN}{\mathrel{{\vDash}_{\!\!\!\N}}}
+\newcommand{\nvDN}{\mathrel{{\nvDash}_{\!\!\!\N}}}
+
+% Upset and downsets, with starred versions for \left and \right
+% Need to be \protect'd inside \caption's
+\makeatletter
+\newcommand{\@usstar}[1]{{\ua}\left(#1\right)}
+\newcommand{\@usnostar}[1]{{\ua}(#1)}
+\newcommand{\us}{\@ifstar{\@usstar}{\@usnostar}}
+\newcommand{\@dsstar}[1]{{\da}\left(#1\right)}
+\newcommand{\@dsnostar}[1]{{\da}(#1)}
+\newcommand{\ds}{\@ifstar{\@dsstar}{\@dsnostar}}
+\newcommand{\@udsstar}[1]{{\uda}\left(#1\right)}
+\newcommand{\@udsnostar}[1]{{\uda}(#1)}
+\newcommand{\uds}{\@ifstar{\@udsstar}{\@udsnostar}}
+\newcommand{\@Usstar}[1]{{\Ua}\left(#1\right)}
+\newcommand{\@Usnostar}[1]{{\Ua}(#1)}
+\newcommand{\Us}{\@ifstar{\@Usstar}{\@Usnostar}}
+\newcommand{\@Dsstar}[1]{{\Da}\left(#1\right)}
+\newcommand{\@Dsnostar}[1]{{\Da}(#1)}
+\newcommand{\Ds}{\@ifstar{\@Dsstar}{\@Dsnostar}}
+\newcommand{\@Udsstar}[1]{{\Uda}\left(#1\right)}
+\newcommand{\@Udsnostar}[1]{{\Uda}(#1)}
+\newcommand{\Uds}{\@ifstar{\@Udsstar}{\@Udsnostar}}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% General Shorthands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Single symbol shortening
+\newcommand{\ep}{\epsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\sig}{\sigma}
+\newcommand{\vd}{\vdash}
+\newcommand{\vD}{\vDash}
+\newcommand{\Vd}{\Vdash}
+\newcommand{\VD}{\VDash}
+\newcommand{\nvd}{\nvdash}
+\newcommand{\nvD}{\nvDash}
+\newcommand{\nVd}{\nVdash}
+\newcommand{\nVD}{\nVDash}
+\newcommand{\Dv}{\Dashv}
+\newcommand{\nDv}{\nDashv}
+\newcommand{\bx}{\square}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\lsa}{\leftsquigarrow}
+\newcommand{\rsa}{\rightsquigarrow}
+\newcommand{\cra}{\circrightarrow}
+\newcommand{\dra}{\dashrightarrow}
+\newcommand{\dla}{\dashleftarrow}
+\newcommand{\ua}{\uparrow}
+\newcommand{\da}{\downarrow}
+\newcommand{\uda}{\updownarrow}
+\newcommand{\Ua}{\Uparrow}
+\newcommand{\Da}{\Downarrow}
+\newcommand{\Uda}{\Updownarrow}
+\newcommand{\es}{\varnothing}
+\newcommand{\sse}{\subseteq}
+\newcommand{\ldot}{\ldotp}
+
+% Paramtered command shortening
+\newcommand{\ob}{\overbar}
+\newcommand{\ol}{\overline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\bb}{\mathbb}
+\newcommand{\mc}{\mathcal}
+\newcommand{\mr}{\mathrm}
+
+% Compound command shortening
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\half}{\ensuremath{\nicefrac{1}{2}}}
+\newcommand{\overbar}[1]{\mkern 1.8mu\overline{\mkern-1.8mu#1\mkern-1.8mu}\mkern 1.8mu}
+
+% Text
+\newcommand{\tail}{\ensuremath{\mathsf{tail}}}
+\newcommand{\head}{\ensuremath{\mathsf{head}}}
+\newcommand{\last}{\ensuremath{\mathsf{last}}}
+
+% Math operators and paired delimiters
+\DeclareMathOperator*{\btd}{\nabla}
+\DeclareMathOperator*{\bdia}{\diaraw}
+\DeclareMathOperator*{\bbx}{\bx}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ab}{\langle}{\rangle}
+\DeclarePairedDelimiter{\sqb}{[}{]}
+\DeclarePairedDelimiter{\dsb}{\llbracket}{\rrbracket}
+\DeclarePairedDelimiter{\dab}{\llangle}{\rrangle}
+\DeclarePairedDelimiter{\abs}{|}{|}
+% \newcommand{\abs}[1]{\mathopen|#1\mathclose|}
+
+% New symbols
+\newcommand{\contradiction}{\noindent
+	\begin{tikzpicture}[x=0.4ex,y=0.4ex]
+		\draw[line width=.15ex] (0,0) -- (1,2) -- (0,2) -- (1,4)
+		(0.95,0.32) -- (0,0) -- (-0.32,0.95);
+	\end{tikzpicture}\hspace*{0.2em}
+}
+\newcommand{\circrightarrow}{\mathrel{{\circ}\mkern-3mu{\rightarrow}}}
+\newcommand{\bis}{\mathrel{\,\raisebox{.3ex}{$\underline{\makebox[.9em]{$\leftrightarrow$}}$}\,}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% General Renewcommands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\succeq}{\succcurlyeq}
+\renewcommand{\preceq}{\preccurlyeq}
+\renewcommand{\nsucceq}{\not\succcurlyeq}
+\renewcommand{\npreceq}{\not\preccurlyeq}
+\renewcommand{\propto}{\varpropto}
+
+
+
+% https://tex.stackexchange.com/a/337097
+\newenvironment{myequation}% fake "displaystyle" environment
+	{\newline\vspace{\abovedisplayskip}\hbox to \textwidth\bgroup\hss$\displaystyle}
+	{$\hss\egroup\vspace{\belowdisplayskip}}
+
+\newenvironment{inblock}[1]
+	{{\setlength{\parskip}{\parsep} \par\noindent #1}
+	\begin{adjustwidth}{2em}{}}
+	{\end{adjustwidth}}
+
+% Small poset diagrams
+\newcommand{\FOneFork}{
+	\raisebox{-0.8ex}{\resizebox{!}{2.5ex}{
+		\begin{tikzpicture}
+			\node[world] (z) at (0,0) {};
+			\node[world] (a) at (0,1) {};
+			\path[draw] (z) -- (a);
+		\end{tikzpicture}
+	}}
+}
+\newcommand{\FPoint}{
+	\raisebox{0.2ex}{\resizebox{!}{0.9ex}{
+		\begin{tikzpicture}
+			\node[world] (z) at (0,0) {};
+		\end{tikzpicture}
+	}}
+}
+
+\newcommand{\FTwoFork}{
+	\raisebox{-0.8ex}{\resizebox{!}{2.5ex}{
+		\begin{tikzpicture}
+			\node[world] (z) at (0,0) {};
+			\node[world] (a1) at (-0.7,1) {};
+			\node[world] (b1) at (0.7,1) {};
+			\path[draw] (z) -- (a1);
+			\path[draw] (z) -- (b1);
+		\end{tikzpicture}
+	}}
+}
+
+\newcommand{\FThreeFork}{
+	\raisebox{-0.5ex}{\resizebox{!}{2ex}{
+		\begin{tikzpicture}
+			\node[world] (z) at (0,0) {};
+			\node[world] (a1) at (-1,1) {};
+			\node[world] (b1) at (0,1) {};
+			\node[world] (c1) at (1,1) {};
+			\path[draw] (z) -- (a1);
+			\path[draw] (z) -- (b1);
+			\path[draw] (z) -- (c1);
+		\end{tikzpicture}
+	}}
+}
+
+\newcommand{\FScott}{
+	\raisebox{-1.1ex}{\resizebox{!}{3ex}{
+		\begin{tikzpicture}
+			\node[world] (z) at (0,0) {};
+			\node[world] (a1) at (-0.7,1) {};
+			\node[world] (a2) at (-0.7,2) {};
+			\node[world] (b1) at (0.7,1) {};
+			\path[draw] (z) -- (a1) -- (a2);
+			\path[draw] (z) -- (b1);
+		\end{tikzpicture}
+	}}
+}
+
+
+
+\DeclareFontFamily{U} {MnSymbolC}{}
+
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+	<-6> MnSymbolC5
+	<6-7> MnSymbolC6
+	<7-8> MnSymbolC7
+	<8-9> MnSymbolC8
+	<9-10> MnSymbolC9
+	<10-12> MnSymbolC10
+	<12-> MnSymbolC12}{}
+\DeclareFontShape{U}{MnSymbolC}{b}{n}{
+	<-6> MnSymbolC-Bold5
+	<6-7> MnSymbolC-Bold6
+	<7-8> MnSymbolC-Bold7
+	<8-9> MnSymbolC-Bold8
+	<9-10> MnSymbolC-Bold9
+	<10-12> MnSymbolC-Bold10
+	<12-> MnSymbolC-Bold12}{}
+
+\DeclareSymbolFont{MnSyC} {U} {MnSymbolC}{m}{n}
+\DeclareMathSymbol{\meddiamond}{\mathbin}{MnSyC}{110}
+
+\newcommand{\raisedia}[2]{\raisebox{0.8\depth}{$#1\meddiamond$}}
+\newcommand{\diaraw}{\mathpalette\raisedia\relax}
+\newcommand{\dia}{{\diaraw}}
+\newcommand{\sdia}{{\scalebox{0.7}{$\dia$}}}

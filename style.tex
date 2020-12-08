@@ -1,0 +1,26 @@
+%!TEX root = tikz-figures.tex
+
+% Theorem styles
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+% Tikz styles
+\tikzset{
+	world/.style={draw,circle,outer sep=0pt,inner sep=0,minimum size=15},
+	point/.style={draw=black,fill=black,opacity=1,circle,outer sep=0pt,inner sep=0,minimum size=2},
+	facefill/.style={fill=blue!20,fill opacity=0.4}
+}
+\tikzgraphsset{
+	poset/.style={grow up=#1, branch right=#1, empty nodes, simple, nodes=point},
+	poset/.default=1cm
+}
