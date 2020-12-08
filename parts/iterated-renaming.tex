@@ -1,0 +1,38 @@
+%!TEX root = ../tikz-figures.tex
+
+\section*{Iterated renaming}
+
+\index{patterns library}
+\index{library!patterns|see {patterns library}}
+\index{overlap}
+\index{arrows!hooked}
+
+\begin{equation*}
+	\begin{tikzpicture}
+		\begin{scope}
+			\draw[pattern=crosshatch] (0,0) circle (0.5);
+			\draw[pattern=horizontal lines] (0,2) ellipse (1 and 0.75);
+			\draw[pattern=north east lines] (0,4.5) ellipse (1.5 and 1);
+			\draw[->] (0,0.55) -- (0,1.2);
+			\draw[->] (0,2.8) -- (0,3.45);
+		\end{scope}
+		\begin{scope}[xshift=75]
+			% \node at (0,2.5) {$\propto$};
+		\end{scope}
+		\begin{scope}[xshift=150]
+			\draw[pattern=crosshatch] (0,0) circle (0.5);
+
+			\draw[pattern=horizontal lines] (0,2) ellipse (1 and 0.75);
+			\fill[white] (0,2) circle (0.5);
+			\draw[pattern=crosshatch] (0,2) circle (0.5);
+
+			\draw[pattern=north east lines] (0,4.5) ellipse (1.5 and 1);
+			\fill[white] (0,4.5) ellipse (1 and 0.75);
+			\draw[pattern=horizontal lines] (0,4.5) ellipse (1 and 0.75);
+			\fill[white] (0,4.5) circle (0.5);
+			\draw[pattern=crosshatch] (0,4.5) circle (0.5);
+			\draw[right hook->] (0,0.55) -- (0,1.2);
+			\draw[right hook->] (0,2.8) -- (0,3.45);
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}

@@ -1,0 +1,79 @@
+%!TEX root = ../tikz-figures.tex
+
+\section*{The landscape of polyhedrally-complete logics}
+
+\index{path!dotted continuing}
+\index{path!curved}
+
+\begin{equation*}
+	\begin{tikzpicture}
+		\begin{scope}[yshift=250]
+			\node[point] (bd0) at (0,0) [label=left:{$\mathrm{CPC}=\mathrm{BD}_0$}] {};
+		\end{scope}
+		\begin{scope}[yshift=190]
+			\node[point] (bd1) at (0,0) [label=left:$\mathrm{BD}_1$] {};
+			\node[point] (pl1) at (7,1.5) [label=right:{$\mathrm{PL}_1=\mathrm{LF}_2$}] {};
+			\draw (pl1)
+				-- ++(-1.05,-0.225) node[point] [label=below:$\mathrm{LF}_3$] {}
+				-- ++(-1.05,-0.225) node[point] [label=below:$\mathrm{LF}_4$] {}
+				-- ++(-1.05,-0.225) node[point] [label=below:$\mathrm{LF}_5$] {}
+				-- ++(-0.5025,-0.1125)
+				edge[densely dotted] +(-0.5025,-0.1125);
+			\draw (bd1)
+				-- ++(0.25125,0.05625)
+				edge[densely dotted] +(0.25125,0.05625);
+		\end{scope}
+		\begin{scope}[yshift=150]
+			\node[point] (bd2) at (0,0) [label=left:$\mathrm{BD}_2$] {};
+			\node[point] (pl2) at (7,1.5) [label=right:$\mathrm{PL}_2$] {};
+			\node[point] (flat2) at (3.5,0.75) [label=below:$\mathrm{Flat}_2$] {};
+			\draw (bd2) 
+				edge[bend left=20] (pl2)
+				edge[bend right=20] (pl2);
+			\draw (bd2)
+				-- (flat2) 
+				edge[bend left=20] (pl2)
+				edge[bend right=20] (pl2);
+			\node (i2) at (-1.5,0.8) {Infinite};
+			\draw[-Latex, bend left=10] (i2) edge (1.5,0.5);
+		\end{scope}
+		\begin{scope}[yshift=100]
+			\node[point] (bd3) at (0,0) [label=left:$\mathrm{BD}_3$] {};
+			\node[point] (pl3) at (7,1.5) [label=right:$\mathrm{PL}_3$] {};
+			\draw (bd3) 
+				edge[bend left=20] (pl3)
+				edge[bend right=20] (pl3);
+			\node (i3) at (-1.5,0.8) {Infinite};
+			\draw[-Latex, bend left=10] (i3) edge (1.5,0.5);
+		\end{scope}
+		\begin{scope}[yshift=0]
+			\node[point] (ipc) at (0,0) [label=left:$\mathrm{IPC}$] {};
+			\node[point] (pl) at (7,1.5) [label=right:$\mathrm{PL}$?] {};
+			\node[point] (sl) at (5.025,1.125) [label=below:$\mathrm{SL}$] {};
+			\draw (ipc) 
+				edge[bend left=20] (pl)
+				edge[bend right=20] (pl);
+		\end{scope}
+		\draw (bd0)
+			-- (bd1)
+			-- (bd2)
+			-- (bd3)
+			-- ++(0,-0.5)
+			edge[densely dotted] +(0,-0.5)
+			++(0,-1.25) node {$\vdots$}
+			++(3.5,0.75) node {$\vdots$};
+		\draw (ipc)
+			-- ++(0,0.25)
+			edge[densely dotted] +(0,0.25);
+		\draw (pl1)
+			-- (pl2)
+			-- (pl3)
+			-- ++(0,-0.5)
+			edge[densely dotted] +(0,-0.5)
+			++(0,-1.25) node {$\vdots$};
+		\draw (pl)
+			-- ++(0,0.25)
+			edge[densely dotted] +(0,0.25);
+		\draw (pl1) -- (bd0);
+	\end{tikzpicture}
+\end{equation*}

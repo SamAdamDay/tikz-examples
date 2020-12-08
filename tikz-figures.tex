@@ -1,8 +1,10 @@
+%!TEX options = -shell-escape
+
 \documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 
-\title{tikz-figures}
+\title{Tikz Figures}
 \author{Sam Adam-Day}
 \date{\today}
 
@@ -25,14 +27,17 @@
 \usepackage{fonttable}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{makeidx}
 % \usepackage[final]{microtype}
 
 \usepackage[charter]{mathdesign}
 \usepackage[T1]{fontenc}
 
-\usetikzlibrary{cd,positioning,arrows,graphs,arrows.meta}
+\makeindex
 
 \input{style}
+\input{tikz-setup}
 \input{commands}
 
 % Bibliography
@@ -42,7 +47,13 @@
 
 	\maketitle
 
-	% \printbibliography
+	\input{parts/magnifying-R-tree}
+	\input{parts/iterated-renaming}
+	\input{parts/polygons-polyhedra}
+	\input{parts/graphs}
+	\input{parts/gaps-in-poset}
+	\input{parts/landscape-poly-complete}
 
+	\printindex
 
 \end{document}

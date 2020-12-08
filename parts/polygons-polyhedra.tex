@@ -1,0 +1,541 @@
+%!TEX root = ../tikz-figures.tex
+
+\section*{Polygons and Polyhedra}
+
+\index{polygon}
+\index{polyhedron}
+\index{3dplot}
+\index{3dplot!overlapping shading}
+
+\begin{equation*}
+	\begin{tikzpicture}[scale=0.7]
+		\tdplotsetmaincoords{95}{95}
+		\begin{scope}[scale=1.6]
+			\filldraw[facefill]
+				(0:1) -- (30:1) -- (60:1) -- (90:1) -- (120:1) -- (150:1) -- (180:1) -- (210:1) -- (240:1) -- (270:1) -- (300:1) -- (330:1) -- cycle;
+		\end{scope}
+		\begin{scope}[xshift=250, yshift=30]
+			\filldraw[facefill] (0,0) -- (2,1) -- (3,-1) -- (2.6,-2.4) -- (0,-2.6) -- (0,-1) -- cycle;
+			\draw (3,-1) -- (5,0.1) -- (3.8,1.2);
+		\end{scope}
+		\begin{scope}[yshift=-180, xshift=120, scale=3]
+			\coordinate (aaa) at (0,0,0);
+			\coordinate (baa) at (1,0,0);
+			\coordinate (aba) at (0.2,1,0.2);
+			\coordinate (bba) at (0.8,1,0.2);
+			\coordinate (aab) at (0,0,1);
+			\coordinate (bab) at (1,0,1);
+			\coordinate (abb) at (0.2,1,0.8);
+			\coordinate (bbb) at (0.8,1,0.8);
+			\fill[facefill] 	(aaa) -- (aab) -- (bab) -- (baa);
+			\fill[facefill] 	(aaa) -- (aab) -- (abb) -- (aba);
+			\draw			 	(aaa) -- (aab);
+			\fill[facefill] 	(bba) -- (aba) -- (aaa) -- (baa);
+			\draw			 	(aba) -- (aaa) -- (baa);
+			\filldraw[facefill] (bbb) -- (bba) -- (baa) -- (bab);
+			\filldraw[facefill] (abb) -- (aab) -- (bab) -- (bbb);
+			\filldraw[facefill] (aba) -- (abb) -- (bbb) -- (bba) -- cycle;
+		\end{scope}
+		\begin{scope}[xshift=120, yshift=-20, scale=1.5]
+			\node[point] at (0,0) {};
+			\node[point] at (0.2,0.5) {};
+			\node[point] at (-0.7,0.4) {};
+			\node[point] at (0.1,0.7) {};
+		\end{scope}
+		\begin{scope}[xshift=180,yshift=-55]
+			\draw (0,0) -- (-45:7);
+		\end{scope}
+		\begin{scope}[xshift=-10,yshift=-190]
+			\filldraw[draw=black,facefill]
+				(0,2) -- ++(0,1) -- ++(1.5,-1) -- cycle;
+			\draw (0,0) -- (0,2);
+		\end{scope}
+		\begin{scope}[xshift=340, yshift=-110, scale=1.6]
+			\draw (0:1) -- (72:1) -- (144:1) -- (216:1) -- (288:1) -- cycle;
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{foreach}
+	\begin{tikzpicture}[scale=0.7]
+		\tdplotsetmaincoords{95}{95}
+		\begin{scope}[scale=1.6, every node/.style=point]
+			\filldraw[facefill]
+				(0:1) -- (30:1) -- (60:1) -- (90:1) -- (120:1) -- (150:1) -- (180:1) -- (210:1) -- (240:1) -- (270:1) -- (300:1) -- (330:1) -- cycle;
+			\node (z) at (0,0) {};
+			\foreach \i in {0,...,11}
+			{
+				\draw (z) -- ({30*\i}:1) node (\i) {};
+			}
+		\end{scope}
+		\begin{scope}[xshift=250, yshift=30, every node/.style=point]
+			\fill[facefill] (0,0) -- (2,1) -- (3,-1) -- (2.6,-2.4) -- (0,-2.6) -- (0,-1.3) -- cycle;
+			\draw (0,0) node {} -- (2,1) node {} -- (3,-1) node {} -- (2.6,-2.4) node {} -- (0,-2.6) node {} -- (0,-1.3) node {} -- cycle;
+			\draw (3,-1) -- (5,0.1) node {} -- (3.8,1.2) node {};
+			\draw (3,-1) -- (0,0) -- (2.6,-2.4) -- (0,-1.3);
+		\end{scope}
+		\begin{scope}[xshift=120, yshift=-180, scale=3]
+			\coordinate (aaa) at (0,0,0);
+			\coordinate (baa) at (1,0,0);
+			\coordinate (aba) at (0.2,1,0.2);
+			\coordinate (bba) at (0.8,1,0.2);
+			\coordinate (aab) at (0,0,1);
+			\coordinate (bab) at (1,0,1);
+			\coordinate (abb) at (0.2,1,0.8);
+			\coordinate (bbb) at (0.8,1,0.8);
+			\fill[facefill] 	(aaa) -- (aab) -- (bab) -- (baa);
+			\fill[facefill] 	(aaa) -- (aab) -- (abb) -- (aba);
+			\draw			 	(aaa) -- (aab);
+			\fill[facefill] 	(bba) -- (aba) -- (aaa) -- (baa);
+			\draw			 	(aba) -- (aaa) -- (baa);
+			\node[point] at (0,0,0) {};
+			\filldraw[facefill] (aab) -- (aba) -- (baa);
+			\fill[facefill]		(baa) -- (abb) -- (bba);
+			\fill[facefill]		(baa) -- (abb) -- (aab);
+			\draw 				(abb) -- (baa);
+			\fill[facefill]		(abb) -- (bbb) -- (baa);
+			\fill[facefill] 	(baa) -- (aab) -- (bbb);
+			\draw 				(baa) -- (aab);
+			\filldraw[facefill] (bbb) -- (bba) -- (baa) -- (bab);
+			\filldraw[facefill] (abb) -- (aab) -- (bab) -- (bbb);
+			\filldraw[facefill] (aba) -- (abb) -- (bbb) -- (bba) -- cycle;
+			\draw 				(baa) -- (bbb) -- (aab);
+			\draw				(abb) -- (bba);
+			\node[point] at (1,0,0) {};
+			\node[point] at (0.2,1,0.2) {};
+			\node[point] at (0.8,1,0.2) {};
+			\node[point] at (0,0,1) {};
+			\node[point] at (1,0,1) {};
+			\node[point] at (0.2,1,0.8) {};
+			\node[point] at (0.8,1,0.8) {};
+		\end{scope}
+		\begin{scope}[xshift=120, yshift=-20, scale=1.5]
+			\node[point] at (0,0) {};
+			\node[point] at (0.2,0.5) {};
+			\node[point] at (-0.7,0.4) {};
+			\node[point] at (0.1,0.7) {};
+		\end{scope}
+		\begin{scope}[xshift=180,yshift=-55]
+			\draw (0,0) node[point] {}
+				-- (-45:1) node[point] {} 
+				-- (-45:4) node[point] {} 
+				-- (-45:2) node[point] {};
+		\end{scope}
+		\begin{scope}[xshift=-10,yshift=-190]
+			\filldraw[draw=black,facefill]
+				(0,2) node[point] (b) {}
+					-- ++(0,1) node[point] {}
+					-- ++(0.75,-0.5) node[point] (a) {}
+					-- ++(0.75,-0.5) node[point] {}
+					-- cycle;
+			\draw (a) -- (b);
+			\draw (0,0) node[point] {} -- (0,2);
+		\end{scope}
+		\begin{scope}[xshift=340, yshift=-110, scale=1.6]
+			\draw (0:1) node[point] {}
+				 -- (72:1) node[point] {}
+				 -- (144:1) node[point] {}
+				 -- (216:1) node[point] {}
+				 -- (288:1) node[point] {}
+				 -- cycle;
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{barycentre}
+	\begin{tikzpicture}[scale=0.7, draw=black]
+		\begin{scope}[yshift=100,every node/.style=point]
+			\coordinate (x) at (90:2);
+			\coordinate (y) at (210:2);
+			\coordinate (z) at (330:2);
+			\filldraw[draw=black,facefill] (x) -- (y) -- (z) -- cycle;
+				\node at (x) {};
+				\node at (y) {};
+			\node at (z) {};
+			\draw[-Latex] (2.5,0.5) -- (3.5,0.5);
+		\end{scope}
+		\begin{scope}[xshift=170,yshift=100,every node/.style=point]
+			\coordinate (x) at (90:2);
+			\coordinate (y) at (210:2);
+			\coordinate (z) at (330:2);
+			\filldraw[draw=black,facefill] (x) -- (y) -- (z) -- cycle;
+				\node at (x) {};
+				\node at (y) {};
+			\node at (z) {};
+			\node (xy) at (bc cs:x,y) {};
+			\node (xz) at (bc cs:x,z) {};
+			\node (yz) at (bc cs:y,z) {};
+			\node (xyz) at (bc cs:x,y,z) {};
+			\graph[use existing nodes]{
+				xyz -- {x,y,z,xy,xz,yz};
+			};
+			\draw[-Latex] (2.5,0.5) -- (3.5,0.5);
+		\end{scope}
+		\begin{scope}[xshift=340,yshift=100,every node/.style=point]
+			\coordinate (x) at (90:2);
+			\coordinate (y) at (210:2);
+			\coordinate (z) at (330:2);
+			\filldraw[draw=black,facefill] (x) -- (y) -- (z) -- cycle;
+				\node at (x) {};
+				\node at (y) {};
+			\node at (z) {};
+			\node (xy) at (bc cs:x,y) {};
+			\node (xz) at (bc cs:x,z) {};
+			\node (yz) at (bc cs:y,z) {};
+			\node (xyz) at (bc cs:x,y,z) {};
+			\node (xxy) at (bc cs:x,xy) {};
+			\node (xxz) at (bc cs:x,xz) {};
+			\node (yxy) at (bc cs:y,xy) {};
+			\node (yyz) at (bc cs:y,yz) {};
+			\node (zxz) at (bc cs:z,xz) {};
+			\node (zyz) at (bc cs:z,yz) {};
+			\node (xxyz) at (bc cs:x,xyz) {};
+			\node (yxyz) at (bc cs:y,xyz) {};
+			\node (zxyz) at (bc cs:z,xyz) {};
+			\node (xyxyz) at (bc cs:xy,xyz) {};
+			\node (xzxyz) at (bc cs:xz,xyz) {};
+			\node (yzxyz) at (bc cs:yz,xyz) {};
+			\node (xxyxyz) at (bc cs:x,xy,xyz) {};
+			\node (xxzxyz) at (bc cs:x,xz,xyz) {};
+			\node (yxyxyz) at (bc cs:y,xy,xyz) {};
+			\node (yyzxyz) at (bc cs:y,yz,xyz) {};
+			\node (zxzxyz) at (bc cs:z,xz,xyz) {};
+			\node (zyzxyz) at (bc cs:z,yz,xyz) {};
+			\graph[use existing nodes]{
+				xyz -- {x,y,z,xy,xz,yz};
+				xxyxyz -- {x,xy,xyz,xxy,xxyz,xyxyz};
+				xxzxyz -- {x,xz,xyz,xxz,xxyz,xzxyz};
+				yxyxyz -- {y,xy,xyz,yxy,yxyz,xyxyz};
+				yyzxyz -- {y,yz,xyz,yyz,yxyz,yzxyz};
+				zxzxyz -- {z,xz,xyz,zxz,zxyz,xzxyz};
+				zyzxyz -- {z,yz,xyz,zyz,zxyz,yzxyz};
+			};
+		\end{scope}
+		\begin{scope}[every node/.style=point]
+			\fill[facefill] (0,0) -- (2,1) -- (3,-1) -- (2.6,-2.4) -- (0,-2.6) -- (0,-1) -- cycle;
+			\draw (0,0) node {} -- (2,1) node {} -- (3,-1) node {} -- (2.6,-2.4) node {} -- (0,-2.6) node {} -- (0,-1.3) node {} -- cycle;
+			\draw (3,-1) -- (5,0.1) node {} -- (3.8,1.2) node {};
+			\draw (3,-1) -- (0,0) -- (2.6,-2.4) -- (0,-1.3);
+			\draw[-Latex] (5.5,-1) -- (6.5,-1);
+		\end{scope}
+		\begin{scope}[xshift=230, every node/.style=point]
+			\fill[facefill] (0,0) -- (2,1) -- (3,-1) -- (2.6,-2.4) -- (0,-2.6) -- (0,-1.3) -- cycle;
+			\draw (0,0) node (a) {} -- (2,1) node (b) {} -- (3,-1) node (c) {} -- (2.6,-2.4) node (d) {} -- (0,-2.6) node (e) {} -- (0,-1.3) node (f) {} -- cycle;
+			\draw (c) -- (5,0.1) node (g) {} -- (3.8,1.2) node (h) {};
+			\draw (c) -- (0,0) -- (2.6,-2.4) -- (0,-1.3);
+			\node at (bc cs:a,b) (ab) {};
+			\node at (bc cs:a,c) (ac) {};
+			\node at (bc cs:b,c) (bc) {};
+			\node at (bc cs:a,c) (ac) {};
+			\node at (bc cs:a,d) (ad) {};
+			\node at (bc cs:c,d) (cd) {};
+			\node at (bc cs:a,d) (ad) {};
+			\node at (bc cs:a,f) (af) {};
+			\node at (bc cs:d,f) (df) {};
+			\node at (bc cs:d,e) (de) {};
+			\node at (bc cs:d,f) (df) {};
+			\node at (bc cs:e,f) (ef) {};
+			\node at (bc cs:a,b,c) (abc) {};
+			\node at (bc cs:a,c,d) (acd) {};
+			\node at (bc cs:a,d,f) (adf) {};
+			\node at (bc cs:d,e,f) (def) {};
+			\node at (bc cs:c,g) (cg) {};
+			\node at (bc cs:g,h) (gh) {};
+			\draw (abc)
+				edge (a)
+				edge (b)
+				edge (c)
+				edge (ab)
+				edge (ac)
+				edge (bc);
+			\draw (acd)
+				edge (a)
+				edge (c)
+				edge (d)
+				edge (ac)
+				edge (ad)
+				edge (cd);
+			\draw (adf)
+				edge (a)
+				edge (d)
+				edge (f)
+				edge (ad)
+				edge (af)
+				edge (df);
+			\draw (def)
+				edge (d)
+				edge (e)
+				edge (f)
+				edge (de)
+				edge (df)
+				edge (ef);
+		\end{scope}
+		\tdplotsetmaincoords{47}{95}
+		\begin{scope}[xshift=15, yshift=-130, tdplot_main_coords, scale=2]
+			\coordinate (x0) at (0,0,0);
+			\coordinate (x1) at (2,0,0);
+			\coordinate (x2) at (1,1.732,0);
+			\coordinate (x3) at (1,0.577,1.633);
+			\fill[facefill] (x0) -- (x3) -- (x2);
+			\fill[facefill] (x0) -- (x1) -- (x2);
+			\draw (x0) -- (x2);
+			\filldraw[facefill] (x1) -- (x0) -- (x3);
+			\filldraw[facefill] (x1) -- (x2) -- (x3) -- cycle;
+			\node[point] at (0,0,0) {};
+			\node[point] at (2,0,0) {};
+			\node[point] at (1,1.732,0) {};
+			\node[point] at (1,0.577,1.633) {};
+			\draw[scale=0.5,tdplot_screen_coords,-Latex] (5,-1) -- (6,-1);
+		\end{scope}
+		\begin{scope}[xshift=250, yshift=-130, tdplot_main_coords, scale=2]
+			\node[point] (x0) at (0,0,0) {};
+			\node[point] (x1) at (2,0,0) {};
+			\node[point] (x2) at (1,1.732,0) {};
+			\node[point] (x3) at (1,0.577,1.633) {};
+			\coordinate (x01) at (1,0,0);
+			\coordinate (x12) at (1.5,0.866,0)	;
+			\coordinate (x23) at (1,1.155,0.816) ;
+			\coordinate (x03) at (0.5,0.289,0.816) ;
+			\coordinate (x02) at (0.5,0.866,0);
+			\coordinate (x13) at (1.5,0.289,0.816) ;
+			\coordinate	(x012) at (1,0.577,0);
+			\coordinate (x013) at (1,0.192,0.544);
+			\coordinate (x023) at (0.667,0.770,0.544);
+			\coordinate (x123) at (1.333,0.770,0.544);
+			\node[point] (x0123) at (1,0.577,0.544) {};
+			\graph[use existing nodes] {
+				x01 -- {x0, x1};
+				x02 -- {x0, x2};
+				x03 -- {x0, x3};
+				x12 -- {x1, x2};
+				x13 -- {x1, x3};
+				x23 -- {x2, x3};
+				x012 -- {x0, x1, x2, x01, x02, x12};
+				x013 -- {x0, x1, x3, x01, x03, x13};
+				x023 -- {x0, x2, x3, x02, x03, x23};
+				x123 -- {x1, x2, x3, x12, x13, x23};
+				x0123 -- {x0, x1, x2, x3, x01, x02, x03, x12, x13, x23, x012, x013, x023, x123}
+			};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{graph library!use existing nodes}
+	\index{4D}
+	\begin{tikzpicture}[yscale=0.9, xscale=0.85]
+		\begin{scope}
+			\node[point] {};
+			\node at (0,-1.5) {$\Phi_0$};
+		\end{scope}
+		\begin{scope}[xshift=50]
+			\draw (-1,0) -- (1,0);
+			\node at (0,-1.5) {$\Phi_1$};
+		\end{scope}
+		\begin{scope}[xshift=130]
+			\filldraw[facefill] (-1,-0.732) -- (1,-0.732) -- (0,1) -- cycle;
+			\node at (0,-1.5) {$\Phi_2$};
+		\end{scope}
+		\tdplotsetmaincoords{70}{50}
+		\begin{scope}[xshift=235]
+			\begin{scope}[tdplot_main_coords, xshift=-30]
+				\coordinate (a1) at (-1,0,-0.732);
+				\coordinate (a2) at (1,0,-0.732);
+				\coordinate (a3) at (0,0,1);
+				\coordinate (b1) at (-1,2,-0.732);
+				\coordinate (b2) at (1,2,-0.732);
+				\coordinate (b3) at (0,2,1);
+				\fill[facefill] (a1) -- (a3) -- (b3) -- (b1);
+				\fill[facefill] (b1) -- (b2) -- (b3);
+				\fill[facefill] (a1) -- (a2) -- (b2) -- (b1);
+				\draw (a1) -- (b1);
+				\draw (b3) -- (b1) -- (b2);
+				\fill[facefill] (a1) -- (a2) -- (a3);
+				\fill[facefill] (a3) -- (a2) -- (b2) -- (b3);
+				\draw (a1) -- (a2) -- (a3) -- cycle;
+				\draw (b2) -- (b3);
+				\draw (a2) -- (b2);
+				\draw (a3) -- (b3);
+			\end{scope}
+			\begin{scope}[tdplot_screen_coords]
+				\node at (0,-1.5) {$\Phi_3$};
+			\end{scope}
+		\end{scope}
+		\tdplotsetmaincoords{55}{45}
+		\begin{scope}[xshift=365]
+			\begin{scope}[tdplot_main_coords, xshift=-50]
+
+				\coordinate (a0) at (-1,0,-0.732);
+				\coordinate (a1) at (1,0,-0.732);
+				\coordinate (a2) at (0,0,1);
+				\coordinate (a3) at (0,1.633,-0.155);
+
+				\coordinate (b0) at (-1,3,-0.732);
+				\coordinate (b1) at (1,3,-0.732);
+				\coordinate (b2) at (0,3,1);
+				\coordinate (b3) at (0,4.633,-0.155);
+
+				\graph[use existing nodes] {
+					{a0, a1, a2, a3} --[complete bipartite] {a0, a1, a2, a3} -- {b0, b1, b2, b3} --[complete bipartite] {b0, b1, b2, b3};
+				};
+			\end{scope}
+			\begin{scope}[tdplot_screen_coords]
+				\node at (0,-1.5) {$\Phi_4$};
+			\end{scope}
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\begin{tikzpicture}[yscale=0.9, xscale=0.85]
+		\begin{scope}
+			\node[point] {};
+			\node at (0,-1.5) {$\Psi_0$};
+		\end{scope}
+		\begin{scope}[xshift=50]
+			\draw (-1,0) -- (1,0);
+			\node at (0,-1.5) {$\Psi_1$};
+		\end{scope}
+		\begin{scope}[xshift=135]
+			\filldraw[facefill] (-1,-1) -- (1,-1) -- (1,1) -- (-1,1) -- cycle;
+			\node at (0,-1.5) {$\Psi_2$};
+		\end{scope}
+		\tdplotsetmaincoords{70}{50}
+		\begin{scope}[xshift=230]
+			\begin{scope}[tdplot_main_coords, xshift=-35,yshift=-10, scale=1.2]
+				\coordinate (x0) at (0,0,0);
+				\coordinate (x1) at (2,0,0);
+				\coordinate (x2) at (1,1.732,0);
+				\coordinate (x3) at (1,0.577,1.633);
+				\fill[facefill] (x0) -- (x3) -- (x2);
+				\fill[facefill] (x0) -- (x1) -- (x2);
+				\draw (x0) -- (x2);
+				\filldraw[facefill] (x1) -- (x0) -- (x3);
+				\filldraw[facefill] (x1) -- (x2) -- (x3) -- cycle;
+			\end{scope}
+			\begin{scope}[tdplot_screen_coords]
+				\node at (0,-1.5) {$\Psi_3$};
+			\end{scope}
+		\end{scope}
+		\tdplotsetmaincoords{70}{50}
+		\begin{scope}[xshift=345]
+			\begin{scope}[tdplot_main_coords, xshift=-30]
+				\coordinate (a1) at (-1,0,-0.732);
+				\coordinate (a2) at (1,0,-0.732);
+				\coordinate (a3) at (0,0,1);
+				\coordinate (b1) at (-1,2,-0.732);
+				\coordinate (b2) at (1,2,-0.732);
+				\coordinate (b3) at (0,2,1);
+				\coordinate (x) at (-2.5,1,1.2);
+				\graph[use existing nodes] {
+					{a1, a2, a3} --[complete bipartite] {a1, a2, a3} -- {b1, b2, b3} --[complete bipartite] {b1, b2, b3};
+					x -- {a1, a2, a3, b1, b2, b3};
+				};
+				% \fill[facefill] (a1) -- (a3) -- (b3) -- (b1);
+				% \fill[facefill] (b1) -- (b2) -- (b3);
+				% \fill[facefill] (a1) -- (a2) -- (b2) -- (b1);
+				% \draw (a1) -- (b1);
+				% \draw (b3) -- (b1) -- (b2);
+				% \fill[facefill] (a1) -- (a2) -- (a3);
+				% \fill[facefill] (a3) -- (a2) -- (b2) -- (b3);
+				% \draw (a1) -- (a2) -- (a3) -- cycle;
+				% \draw (b2) -- (b3);
+				% \draw (a2) -- (b2);
+				% \draw (a3) -- (b3);
+			\end{scope}
+			\begin{scope}[tdplot_screen_coords]
+				\node at (0,-1.5) {$\Phi_4$};
+			\end{scope}
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+
+\begin{equation*}
+	\index{graph library!poset}
+	\begin{tikzpicture}[scale=0.95]
+		\tdplotsetmaincoords{110}{320}
+		\begin{scope}[scale=0.7,tdplot_main_coords]
+			\coordinate (a0) at (0,0,0);
+			% \coordinate (a1) at (0,1,0);
+			\coordinate (a2) at (0,2,0);
+			% \coordinate (a3) at (0,3,0);
+			\coordinate (a4) at (0,4,0);
+			\coordinate (b0) at (4,0,0);
+			% \coordinate (b1) at (4,1,0);
+			\coordinate (b2) at (4,2,0);
+			% \coordinate (b3) at (4,3,0);
+			\coordinate (b4) at (4,4,0);
+			\coordinate (t) at  (2,2,4);
+			\fill[facefill] (a0) -- (a4) -- (b4) -- (b0);
+			\fill[facefill] (t) -- (a0) -- (a4);
+			\graph[use existing nodes] {
+				a0 -- a2 -- a4;
+				t -- {a0, a2, a4} --[matching] {b0, b2, b4};
+			};
+			\fill[facefill] (t) -- (a0) -- (b0);
+			% \fill[facefill] (t) -- (a1) -- (b1);
+			\fill[facefill] (t) -- (a2) -- (b2);
+			% \fill[facefill] (t) -- (a3) -- (b3);
+			\fill[facefill] (t) -- (a4) -- (b4);
+			\fill[facefill] (t) -- (b0) -- (b4);
+			\graph[use existing nodes] {
+				b0 -- b2 -- b4;
+				{b0, b2, b4} -- t;
+			};
+			\draw[-Latex,tdplot_screen_coords] (3.9,0.7) -> (4.9,0.7);
+		\end{scope}
+		\begin{scope}[xshift=115,yshift=-30]
+			\graph[poset] {
+				o[x=1cm, label=left:$\bot$] -- {
+					x0[label=left:$x$] -- x[label=left:$X$] -- {a[x=0.5,label=above:$A$]},
+					y0[label=left:$y$] -- y[label=left:$Y$] -- {a,b[x=0.5,label=above:$B$]},
+					z0[label=right:$z$] -- z[label=right:$Z$] -- b
+				};
+			};
+		\end{scope}
+		\begin{scope}[xshift=260,scale=0.7,tdplot_main_coords]
+			\coordinate (a0) at (0,0,0);
+			\coordinate (a2) at (0,2,0);
+			\coordinate (a4) at (0,4,0);
+			\coordinate (b0) at (4,0,0);
+			\coordinate (b2) at (4,2,0);
+			\coordinate (b4) at (4,4,0);
+			\coordinate (t) at  (2,2,4);
+			\graph[use existing nodes] {
+				{[edges={densely dotted}] a0 -- a2 -- a4};
+				t -- {a0, a2, a4} --[matching] {b0, b2, b4};
+			};
+			\fill[facefill] (t) -- (a0) -- (b0);
+			\fill[facefill] (t) -- (a2) -- (b2);
+			\fill[facefill] (t) -- (a4) -- (b4);
+			\fill[facefill] (t) -- (b0) -- (b4);
+			\graph[use existing nodes] {
+				{[edges={densely dotted}] b0 -- b2 -- b4};
+				{b0, b4} -- t;
+				{b2} -- t;
+			};
+			\node[point,label=above left:$\bot$] at (t) {};
+			\begin{scope}[tdplot_screen_coords]
+				\node (x0) at (1.5,3) {$x$};
+				\node (z0) at (2,2.75) {$y$};
+				\node (y0) at (2.5,2.5) {$z$};
+				\node (x1) at (2.5,1.5) {$X$};
+				\node (z1) at (3,1.25) {$Y$};
+				\node (y1) at (3.5,1) {$Z$};
+			\end{scope}
+			\draw[-Latex]
+				(x0) edge (barycentric cs:t=5,b4=1)
+				(z0) edge (barycentric cs:t=5,b2=2)
+				(y0) edge (barycentric cs:t=5,b0=3);
+			\draw[-Latex, bend left=10]
+				(x1) edge (barycentric cs:t=1,b4=1,a4=0.5)
+				(z1) edge (barycentric cs:t=1,b2=2,a2=0.5)
+				(y1) edge (barycentric cs:t=1,b0=3,a0=0.5);
+			\node at (3.9,1,0.4) {$B$};
+			\node at (3.9,3,0.4) {$A$};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}

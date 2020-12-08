@@ -1,0 +1,37 @@
+%!TEX root = ../tikz-figures.tex
+
+\section*{Gaps in a poset}
+
+\index{brace}
+\begin{equation*}
+	\begin{tikzpicture}
+		\path
+			(0,0) node[point] {}
+			-- ++(0,0.6) node {$\vdots$}
+			-- ++(0,0.4) node[point] [label=left:$v_1$] {}
+			edge[draw,densely dotted] +(-0.3,0.3)
+			edge[draw,densely dotted] +(0.3,0.3)
+			-- +(-0.25,0.75) node[point] [label=right:$w_1$] {}
+			-- ++(0,1.5) node[point] [label=left:$u_1$] {}
+			edge[draw,densely dotted] +(-0.3,-0.3)
+			edge[draw,densely dotted] +(0.3,-0.3)
+			-- ++(0,0.6) node {$\vdots$}
+			-- ++(0,0.4) node[point] [label=left:$v_2$] {}
+			edge[draw,densely dotted] +(-0.3,0.3)
+			edge[draw,densely dotted] +(0.3,0.3)
+			-- +(0.25,0.75) node[point] [label=left:$w_2$] {}
+			-- ++(0,1.5) node[point] [label=left:$u_2$] {}
+			edge[draw,densely dotted] +(-0.3,-0.3)
+			edge[draw,densely dotted] +(0.3,-0.3)
+			-- ++(0,0.6) node {$\vdots$}
+			-- ++(0,0.4) node[point] {};
+			\draw[decoration={calligraphic brace,amplitude=0.2cm}, decorate, line width=1.25pt] (0.5,1) -- (0.5,0);
+			\draw[decoration={calligraphic brace,amplitude=0.2cm}, decorate, line width=1.25pt] (0.5,3.5) -- (0.5,2.5);
+			\draw[decoration={calligraphic brace,amplitude=0.2cm}, decorate, line width=1.25pt] (0.5,6) -- (0.5,5);
+			\node at (3,3) (X) {X};
+			\draw (X)
+				edge (0.7,0.5)
+				edge (0.7,3)
+				edge (0.7,5.5);
+	\end{tikzpicture}
+\end{equation*}

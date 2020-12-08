@@ -1,0 +1,119 @@
+%!TEX root = ../tikz-figures.tex
+
+
+\section*{Magnifying an \texorpdfstring{\R}{R}-tree}
+
+\index{magnifying glass}
+\index{math functions!trigonmetry}
+
+\begin{equation*}
+	\begin{tikzpicture}[scale=0.5]
+
+		\begin{scope}
+			\draw (0,0) -- (5,0);
+			\draw (1.0,0) -- (1.0,2.5);
+			\draw (1.2,0) -- (1.2,-2.5);
+			\draw (2.1,0) -- (2.1,-2.5);
+			\draw (3.4,0) -- (3.4,2.5);
+			\draw (4.1,0) -- (4.1,2.5);
+			\draw (4.2,0) -- (4.2,-2.5);
+			\coordinate (c0) at (2.5,0);
+			\draw[densely dotted] (c0) circle (0.5);
+			% \node at (2.2,1.25) {$\cdots$};
+		\end{scope}
+
+		\begin{scope}[xshift=170]
+			\coordinate (c1) at (2.5,0);
+			\draw[densely dotted] (c1) circle (2.5);
+			\begin{scope}
+				\clip (c1) circle (2.5);
+				\draw (0,0) -- (5,0);
+				\draw (1.2,0) -- (1.2,2.5);
+				\draw (4.0,0) -- (4.0,-2.5);
+				\draw (1.8,0) -- (1.8,-2.5);
+				\draw (3.4,0) -- (3.4,2.5);
+				\draw (3.1,0) -- (3.1,2.5);
+				\draw (2.1,0) -- (2.1,2.5);
+				\draw[densely dotted] (2.5,0) circle (0.5);
+			\end{scope}
+		\end{scope}
+
+		\begin{scope}[xshift=340]
+			\coordinate (c2) at (2.5,0);
+			\draw[densely dotted] (c2) circle (2.5);
+			\begin{scope}
+				\clip (c2) circle (2.5);
+				\draw (0,0) -- (5,0);
+				\draw (0.9,0) -- (0.9,2.5);
+				\draw (4.4,0) -- (4.4,-2.5);
+				\draw (3.0,0) -- (3.0,-2.5);
+				\draw (2.3,0) -- (2.3,2.5);
+				\draw (2.9,0) -- (2.9,2.5);
+				\draw (2.6,0) -- (2.6,-2.5);
+				\draw[densely dotted] (2.5,0) circle (0.5);
+			\end{scope}
+		\end{scope}
+
+		\begin{scope}[xshift=510]
+			\coordinate (c3) at (2.5,0);
+			\node at (2.5,0) {$\cdots$};
+		\end{scope}
+
+		\Distance{(c0)}{(c1)}{\dis};
+		\draw[densely dotted] ($(c0) + ({asin(2/\dis)+90}:0.5)$) -- ($(c1) + ({asin(2/\dis)+90}:2.5)$);
+		\draw[densely dotted] ($(c0) + ({270-asin(2/\dis)}:0.5)$) -- ($(c1) + ({270-asin(2/\dis)}:2.5)$);
+		\Distance{(c1)}{(c2)}{\dis};
+		\draw[densely dotted] ($(c1) + ({asin(2/\dis)+90}:0.5)$) -- ($(c2) + ({asin(2/\dis)+90}:2.5)$);
+		\draw[densely dotted] ($(c1) + ({270-asin(2/\dis)}:0.5)$) -- ($(c2) + ({270-asin(2/\dis)}:2.5)$);
+		\Distance{(c2)}{(c3)}{\dis};
+		\draw[densely dotted] ($(c2) + ({asin(2/\dis)+90}:0.5)$) -- ($(c3) + ({asin(2/\dis)+90}:2.5)$);
+		\draw[densely dotted] ($(c2) + ({270-asin(2/\dis)}:0.5)$) -- ($(c3) + ({270-asin(2/\dis)}:2.5)$);
+		
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\begin{tikzpicture}[scale=0.5]
+
+		\begin{scope}
+			\coordinate (c0) at (2.5,0);
+			\draw[densely dotted] (c0) circle (2.5);
+			\begin{scope}
+				\clip (c0) circle (2.5);
+				\draw (0,0) -- (5,0);
+				\draw (1.0,0) -- (1.0,2.5);
+				\draw (1.2,0) -- (1.2,-2.5);
+				\draw (2.1,0) -- (2.1,-2.5);
+				\draw (3.4,0) -- (3.4,2.5);
+				\draw (4.1,0) -- (4.1,2.5);
+				\draw (4.2,0) -- (4.2,-2.5);
+				\draw[densely dotted] (c0) circle (0.5);
+			\end{scope}
+			% \node at (2.2,1.25) {$\cdots$};
+		\end{scope}
+
+		\begin{scope}[xshift=170]
+			\coordinate (c1) at (2.5,0);
+			\draw[densely dotted] (c1) circle (2.5);
+			\begin{scope}
+				\clip (c1) circle (2.5);
+				\draw (0,0) -- (5,0);
+				\draw (1.2,0) -- (1.2,2.5);
+				\draw (4.0,0) -- (4.0,-2.5);
+				\draw (1.8,0) -- (1.8,-2.5);
+				\draw (3.4,0) -- (3.4,2.5);
+				\draw (3.1,0) -- (3.1,2.5);
+				\draw (2.1,0) -- (2.1,2.5);
+				\draw[densely dotted] (2.5,0) circle (0.5);
+			\end{scope}
+		\end{scope}
+
+		\Distance{(c0)}{(c1)}{\dis};
+		\draw[densely dotted] ($(c0) + ({asin(2/\dis)+90}:0.5)$) -- ($(c1) + ({asin(2/\dis)+90}:2.5)$);
+		\draw[densely dotted] ($(c0) + ({270-asin(2/\dis)}:0.5)$) -- ($(c1) + ({270-asin(2/\dis)}:2.5)$);
+		\Distance{(c1)}{(c0)}{\dis};
+		\draw[densely dotted] ($(c1) + ({90-asin(2/\dis)}:0.5)$) -- ($(c0) + ({90-asin(2/\dis)}:2.5)$);
+		\draw[densely dotted] ($(c1) + ({270+asin(2/\dis)}:0.5)$) -- ($(c0) + ({270+asin(2/\dis)}:2.5)$);
+		
+	\end{tikzpicture}
+\end{equation*}

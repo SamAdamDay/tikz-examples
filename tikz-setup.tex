@@ -1,0 +1,77 @@
+%!TEX root = tikz-figures.tex
+
+\usetikzlibrary{
+	external, % Externalise tikzfigures to speed up compile. Needs %!TEX options = -shell-escape
+	cd,
+	positioning,
+	arrows,
+	graphs,
+	arrows.meta,
+	calc,
+	patterns,
+	patterns.meta,
+	decorations.pathreplacing,
+	calligraphy
+}
+
+% Set up externalisation
+\tikzexternalize[prefix=figures/]
+
+% Turn off externalisation for Tikz cd figures (because it doesn't work)
+% https://tex.stackexchange.com/a/172432
+\AtBeginEnvironment{tikzcd}{\tikzexternaldisable}
+\AtEndEnvironment{tikzcd}{\tikzexternalenable}
+
+% Tikz styles
+\tikzset{
+	world/.style={draw,circle,outer sep=0pt,inner sep=0,minimum size=15},
+	point/.style={draw=black,fill=black,opacity=1,circle,outer sep=0pt,inner sep=0,minimum size=2},
+	facefill/.style={fill=blue!20,fill opacity=0.4}
+}
+\tikzgraphsset{
+	poset/.style={grow up=#1, branch right=#1, empty nodes, simple, nodes=point},
+	poset/.default=1cm
+}
+
+% Distance between points
+\makeatletter
+\newcommand{\Distance}[3]{% % from https://tex.stackexchange.com/q/56353/121799
+\tikz@scan@one@point\pgfutil@firstofone($#1-#2$)\relax  
+\pgfmathsetmacro{#3}{round(0.99626*veclen(\the\pgf@x,\the\pgf@y)/0.0283465)/1000}
+}% Explanation: the calc library allows us, among other things, to add and
+% subtract points, so ($#1-#2$) is simply the difference between the points
+% #1 and #2. The combination \tikz@scan@one@point\pgfutil@firstofone extracts
+% the coordinates of the new point and stores them in \pgf@x and \pgf@y. 
+% They get fed in veclen, and \pgfmathsetmacro stores the result in #3. 
+% EDIT: included fudge factor, see https://tex.stackexchange.com/a/22702/121799
+\makeatother
+
+% Barycentre of points
+% Modified from the tikz source tikz.code.tex
+\makeatletter
+\tikzdeclarecoordinatesystem{bc}
+{%
+  {%
+    \pgf@xa=0pt% point
+    \pgf@ya=0pt%
+    \pgf@xb=0pt% sum
+    \tikz@bc@dolist#1,,%
+    \pgfmathparse{1/\the\pgf@xb}%
+    \global\pgf@x=\pgfmathresult\pgf@xa%
+    \global\pgf@y=\pgfmathresult\pgf@ya%
+  }%
+}%
+
+\def\tikz@bc@dolist#1,{%
+  \def\tikz@temp{#1}%
+  \ifx\tikz@temp\pgfutil@empty%
+  \else
+    \pgf@process{\pgfpointanchor{#1}{center}}%
+    \pgfmathparse{1}%
+    \advance\pgf@xa by\pgfmathresult\pgf@x%
+    \advance\pgf@ya by\pgfmathresult\pgf@y%
+    \advance\pgf@xb by\pgfmathresult pt%
+    \expandafter\tikz@bc@dolist%
+  \fi%
+}
+\makeatother
