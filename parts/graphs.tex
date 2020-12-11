@@ -396,3 +396,189 @@
 			
 	\end{tikzpicture}
 \end{equation*}
+
+
+\begin{equation*}
+	\begin{tikzpicture}[xscale=0.5,yscale=0.5]
+		\begin{scope}
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,0) {$u_0$};
+			\draw[red] (-0.8,0) circle (0.5);
+			\node[black] at (0.3,0) {$u_1$};
+			\draw[red] (0.3,0) circle (0.5);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b000) at (0,-1.2);
+			\coordinate (t000) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=-270,yshift=100]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,0) {$u_1$};
+			\draw[red] (0.3,0) circle (0.5);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b001) at (0,-1.2);
+			\coordinate (t001) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=-90,yshift=100]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,0) {$u_1$};
+			\draw[red] (0.3,0) circle (0.5);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b010) at (0,-1.2);
+			\coordinate (t010) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=-90,yshift=200]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,-0.4) {$u_1$};
+			\node[black] at (0.3,0.4) {$v_1$};
+			\draw[blue] (0.3,0) ellipse (0.5 and 0.9);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b011) at (0,-1.2);
+			\coordinate (t011) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=180,yshift=100]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,0) {$u_1$};
+			\draw[red] (0.3,0) circle (0.5);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b100) at (0,-1.2);
+			\coordinate (t100) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=90,yshift=200]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,-0.4) {$u_1$};
+			\node[black] at (0.3,0.4) {$v_1$};
+			\draw[blue] (0.3,0) ellipse (0.5 and 0.9);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b101) at (0,-1.2);
+			\coordinate (t101) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=270,yshift=200]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,-0.4) {$u_1$};
+			\node[black] at (0.3,0.4) {$v_1$};
+			\draw[blue] (0.3,0) ellipse (0.5 and 0.9);
+			\node[black] at (1.4,0) {$u_2$};
+			\draw[red] (1.4,0) circle (0.5);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b110) at (0,-1.2);
+			\coordinate (t110) at (0,1.2);
+		\end{scope}
+		\begin{scope}[xshift=270,yshift=300]
+			\draw (0,0) ellipse (3 and 1.1);
+			\clip (0,0) ellipse (3 and 1.1);
+			\draw (-1.5,-1) -- (-1.5,1);
+			\node at (-2,0) {$N$};
+			\node[black] at (-0.8,-0.4) {$u_0$};
+			\node[black] at (-0.8,0.4) {$v_0$};
+			\draw[blue] (-0.8,0) ellipse (0.5 and 0.9);
+			\node[black] at (0.3,-0.4) {$u_1$};
+			\node[black] at (0.3,0.4) {$v_1$};
+			\draw[blue] (0.3,0) ellipse (0.5 and 0.9);
+			\node[black] at (1.4,-0.4) {$u_2$};
+			\node[black] at (1.4,0.4) {$v_2$};
+			\draw[blue] (1.4,0) ellipse (0.5 and 0.9);
+			\node at (2.5,0) {$\cdots$};
+			\coordinate (b111) at (0,-1.2);
+			\coordinate (t111) at (0,1.2);
+		\end{scope}
+		\draw[->] ($(t000) + (-3,-0.6)$) -- ($(b001) + (2,0.2)$);
+		\draw[->] ($(t000) + (-1,0)$) -- ($(b010) + (1,0)$);
+		\draw[->] ($(t000) + (2,-0.2)$) -- ($(b100) + (-2,0.2)$);
+		\draw[->] (t010) -- (b011);
+		\draw[->] ($(t100) + (-1,0)$) -- ($(b101) + (1,0)$);
+		\draw[->] ($(t100) + (1,0)$) -- ($(b110) + (-1,0)$);
+		\draw[->] (t110) -- (b111);
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{foreach}
+	\index{graph!use existing nodes}
+	\begin{tikzpicture}
+		\begin{scope}
+			\node (a3) at (0,0) {$3$};
+			\node (a0) at (-1,1) {$0$};
+			\node (a1) at (0,1) {$1$};
+			\node (a2) at (1,1) {$2$};
+			\graph[use existing nodes] {
+				a3 -> {a0,a1,a2},
+				a2 -> a1,
+				a2 ->[bend right] a0,
+				a1 -> a0
+			};
+			\node at (0,-1) {$(3+1,\ni)$};
+		\end{scope}
+		\begin{scope}[xshift=100]
+			\graph[poset] {
+				b000[xshift=1.5cm] -- {
+					b001,
+					b010 -- {
+						b011
+					},
+					b100[xshift=0.5cm] -- {
+						b101,
+						b110 -- {
+							b111
+						}
+					}
+				}
+			};
+			\foreach \i in {0,1,2,3}
+			{
+				\draw (4,\i) -- (4.25,\i) node [label=right:{height $\i$}] {};
+			}
+			\node at (1.5,-1) {$T_{3}$};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
