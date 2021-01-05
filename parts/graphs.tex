@@ -594,3 +594,17 @@
 		\draw[{[-]}] ($(x)+(0,0.2)$) -- ($(y)+(0,0.2)$) -- ($(z)+(0,0.2)$);
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{brace!with label}
+	\index{node on path!midway}
+	\begin{tikzpicture}[xscale=2]
+		\node[point] (x) at (-1,0) [label=left:$x$] {};
+		\node[point] (y) at (0,0) [label=below:$y$] {};
+		\node[point] (z) at (1,0) [label=right:$z$] {};
+		\draw (x) -- (y) -- (z);
+		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(x)+(0,0.2)$) -- node [midway, yshift=12] {$[x,y]$} ($(y)+(0,0.2)$);
+		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(y)+(0,0.2)$) -- node [midway, yshift=12] {$[y,z]$} ($(z)+(0,0.2)$);
+		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(z)-(0,0.5)$) -- node [midway, yshift=-12] {$[x,z]$} ($(x)-(0,0.5)$);
+	\end{tikzpicture}
+\end{equation*}
