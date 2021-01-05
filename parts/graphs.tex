@@ -582,3 +582,15 @@
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{calc!relative position}
+	\index{arrows!bracket}
+	\begin{tikzpicture}[scale=3]
+		\node[point] (x) at (-1,0.5) [label=left:$x$] {};
+		\node[point] (y) at (0,1) [label=below:$y$] {};
+		\node[point] (z) at (1,0.5) [label=right:$z$] {};
+		\draw (x) -- (y) -- (z);
+		\draw[{[-]}] ($(x)+(0,0.2)$) -- ($(y)+(0,0.2)$) -- ($(z)+(0,0.2)$);
+	\end{tikzpicture}
+\end{equation*}
