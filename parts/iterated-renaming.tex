@@ -36,3 +36,35 @@
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{scope!rotate}
+	\index{patterns library!coloured}
+	\begin{tikzpicture}[xscale=0.8]
+		\begin{scope}[rotate=270]
+			\draw[pattern=crosshatch, pattern color=red] (0,0) circle (0.5);
+			\draw[pattern=horizontal lines, pattern color=blue] (0,2) ellipse (1 and 0.75);
+			\draw[pattern=north east lines, pattern color=olive] (0,4.5) ellipse (1.5 and 1);
+			\draw[->] (0,0.55) -- (0,1.2);
+			\draw[->] (0,2.8) -- (0,3.45);
+		\end{scope}
+		\begin{scope}[xshift=195]
+			\draw (0,-1.5) -- (0,1.5);
+		\end{scope}
+		\begin{scope}[xshift=250, rotate=270]
+			\draw[pattern=crosshatch, pattern color=red] (0,0) circle (0.5);
+
+			\draw[pattern=horizontal lines, pattern color=blue] (0,2) ellipse (1 and 0.75);
+			\fill[white] (0,2) circle (0.5);
+			\draw[pattern=crosshatch, pattern color=red] (0,2) circle (0.5);
+
+			\draw[pattern=north east lines, pattern color=olive] (0,4.5) ellipse (1.5 and 1);
+			\fill[white] (0,4.5) ellipse (1 and 0.75);
+			\draw[pattern=horizontal lines, pattern color=blue] (0,4.5) ellipse (1 and 0.75);
+			\fill[white] (0,4.5) circle (0.5);
+			\draw[pattern=crosshatch, pattern color=red] (0,4.5) circle (0.5);
+			\draw[right hook->] (0,0.55) -- (0,1.2);
+			\draw[right hook->] (0,2.8) -- (0,3.45);
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
