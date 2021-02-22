@@ -195,6 +195,7 @@
 
 \begin{equation*}
 	\index{path!rounded}
+	\index{path!cycle}
 	\begin{tikzpicture}
 		\begin{scope}
 			\graph[poset] {
@@ -606,5 +607,44 @@
 		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(x)+(0,0.2)$) -- node [midway, yshift=12] {$[x,y]$} ($(y)+(0,0.2)$);
 		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(y)+(0,0.2)$) -- node [midway, yshift=12] {$[y,z]$} ($(z)+(0,0.2)$);
 		\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt] ($(z)-(0,0.5)$) -- node [midway, yshift=-12] {$[x,z]$} ($(x)-(0,0.5)$);
+	\end{tikzpicture}
+\end{equation*}
+
+
+\begin{equation*}
+	\index{path!rounded}
+	\index{path!cycle}
+	\index{node on path!midway}
+	\index{node on path!sloped}
+	\index{node on path!fraction position}
+	\index{variable!pgfmathsetmacro}
+	\index{multiline node text}
+	\index{manual scaling}
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\xscale}{7};
+		\pgfmathsetmacro{\yscale}{4};
+		\node[align=center] (w) at (0,0) {$\aleph_0$-branch\\well-founded trees};
+		\node[align=center] (s) at ({1*\xscale},0) {$\omega$-sequences of\\$\aleph_0$-branch\\well-founded trees};
+		\node[align=center] (b) at (0,{1*\yscale}) {branchwise-real\\trees};
+		\node[align=center] (q) at ({1*\xscale},{1*\yscale}) {quasi-\\branchwise-real\\trees};
+		\node[align=center] (r) at (0,{2.1*\yscale}) {\R-trees};
+
+		\draw[dashed, rounded corners=50] 
+			({-0.3*\xscale},{-0.7*\yscale})
+			-- ({1.7*\xscale},{1.3*\yscale})
+			-- node[above] {Partial orders} ({-0.3*\xscale},{1.3*\yscale})
+			-- cycle;
+		\draw[dashed] (r) ellipse ({0.2*\xscale} and {0.2*\yscale}) node[above={0.2*\yscale}] {Metric spaces};
+
+		\draw[->] (w) -- node[sloped, above] {$\Road$} (b);
+		% \draw[decorate, decoration=snake] (w) -- (s);
+		\draw[<->] (w) edge (s);
+		\draw[right hook->, bend right=10] (w) edge (q);
+		\draw[->] (s) -- node[sloped, above, pos=0.4] {$\Limb$} (q);
+		\draw[->] (b) -- node[sloped, below, pos=0.4] {(last week)} (s);
+		\draw[->] (b) edge[bend left=10] node[above] {$\Skel$} (q);
+		\draw[->] (q) edge[bend left=10] node[below] {$\Fill$} (b);
+		\draw[->] (b) edge[bend left] node[rotate=90, above, align=center] {railroad-track} (r);
+		\draw[->] (r) edge[bend left] node[rotate=270, above, align=center] {cut-point order} (b);
 	\end{tikzpicture}
 \end{equation*}
