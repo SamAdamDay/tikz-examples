@@ -232,6 +232,7 @@
 	\index{newcommand}
 	\index{graph library!custom}
 	\index{foreach}
+	\index{if statement!ifthenelse}
 	\begin{tikzpicture}[xscale=0.9]
 
 		\newcommand{\sawedtreeblock}[1]{
@@ -610,7 +611,6 @@
 	\end{tikzpicture}
 \end{equation*}
 
-
 \begin{equation*}
 	\index{path!rounded}
 	\index{path!cycle}
@@ -646,5 +646,19 @@
 		\draw[->] (q) edge[bend left=10] node[below] {$\Fill$} (b);
 		\draw[->] (b) edge[bend left] node[rotate=90, above, align=center] {railroad-track} (r);
 		\draw[->] (r) edge[bend left] node[rotate=270, above, align=center] {cut-point order} (b);
+	\end{tikzpicture}
+\end{equation*}
+
+
+\begin{equation*}
+	\index{foreach}
+	\index{math functions!trigonmetry}
+	\index{limit visualisation}
+	\begin{tikzpicture}
+		\foreach \n in {-100,...,100}
+		{
+			\draw (0,{atan(\n/2)/90}) -- ++(1,1);
+		}
+		\draw (0,-1) -- (0,1);
 	\end{tikzpicture}
 \end{equation*}
