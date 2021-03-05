@@ -69,35 +69,51 @@
 	\end{tikzpicture}
 \end{equation*}
 
-
 \begin{equation*}
 	\index{foreach}
 	\index{if statement!ifthenelse}
 	\index{vartiable!pgfmathsetmacro}
 	\index{legend}
 	\index{patterns library}
-	\begin{tikzpicture}
-		\pgfmathsetmacro{\iterations}{5};
+	\index{clip}
+	\index{path!partly rounded}
+	\index{limit visulasation}
+	\begin{tikzpicture}[xscale=1.3]
+		\pgfmathsetmacro{\rightits}{4}; % Rightward iterations
+		\pgfmathsetmacro{\leftits}{30}; % Leftward iterations
 		\draw[rounded corners=10, pattern=dots] 
-			({\iterations*2},0.5) -- (0,0.5) -- (0,-0.5) -- ({\iterations*2},-0.5);
-		\foreach \n in {0,...,{\iterations-1}}
+			({\rightits*2},0.5) -- (0,0.5) -- (0,-0.5) -- ({\rightits*2},-0.5);
+		\begin{scope}
+			\clip [rounded corners=10] ({\rightits*2},0.5) -- (0,0.5) -- (0,-0.5) -- ({\rightits*2},-0.5);
+			\foreach \n in {1,...,\leftits}
+			{
+				\path[fill=white]
+					({5/(3*\n+2)},0.5) rectangle ({5/(3*\n+1)},-0.5);
+				\draw[pattern=crosshatch]
+					({5/(3*\n+2)},0.5) rectangle ({5/(3*\n+1)},-0.5);
+			}
+			\draw[fill=black] (0,0.5) rectangle ({5/(3*\leftits)},-0.5);
+		\end{scope}
+		\foreach \n in {1,...,{\rightits-1}}
 		{
-			\path[rounded corners=10, fill=white]
-				({\n*2},0.5) rectangle ({\n*2+1.414},-0.5);
-			\draw[rounded corners=10, pattern=crosshatch]
-				({\n*2},0.5) rectangle ({\n*2+1.414},-0.5);
+			\path[fill=white]
+				({\n*2},0.5) 
+					{[rounded corners=10] -- ({\n*2+1.414},0.5)
+					-- ({\n*2+1.414},-0.5)}
+					-- ({\n*2},-0.5)
+					-- cycle;
+			\draw[pattern=crosshatch]
+				({\n*2},0.5) 
+					{[rounded corners=10] -- ({\n*2+1.414},0.5)
+					-- ({\n*2+1.414},-0.5)}
+					-- ({\n*2},-0.5)
+					-- cycle;
 			\draw ({\n*2+1.414},0.5) -- ({\n*2+1.414},0.6);
-			\ifthenelse{\n > 0}
-				{
-					\draw ({\n*2},-0.5) -- ({\n*2},-0.6);
-					\node at ({\n*2},-0.85) {$\n$};
-					\node at ({\n*2+1.414},0.85) {$\n+\nicefrac 1 {\sqrt 2}$};
-				}
-				{
-					\node at ({\n*2+1.414},0.85) {$\nicefrac 1 {\sqrt 2}$};
-				}
+			\node at ({\n*2+1.414},0.85) {$\n+\nicefrac 1 {\sqrt 2}$};
+			\draw ({\n*2},-0.5) -- ({\n*2},-0.6);
+			\node at ({\n*2},-0.85) {$\n$};
 		}
-		\node at ({\iterations*2 + 0.5},0) {$\cdots$};
+		\node at ({\rightits*2 + 0.5},0) {$\cdots$};
 		\begin{scope}[xshift=75,yshift=-50]
 			\node[draw, pattern=dots, outer sep=0pt,inner sep=0,minimum size=15] [label=right:{$\aleph_0$-dense}] {};
 			\node[draw, pattern=crosshatch, outer sep=0pt,inner sep=0,minimum size=15] [label=right:{$\aleph_1$-dense}] at (3,0) {};
