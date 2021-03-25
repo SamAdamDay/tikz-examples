@@ -1,0 +1,52 @@
+%!TEX root = ../tikz-figures.tex
+
+\section*{Trees}
+
+\begin{equation*}
+	\index{foreach}
+	\index{foreach!backwards}
+	\index{variable!pgfmathsetmacro}
+	\index{variable!from expression}
+	\index{variable!pgfmathparse}
+	\index{clip}
+	\index{path!curved}
+	\index{node on path!fraction position}
+	\index{math functions!mod}
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\qpoints}{4}; % Number of q_n's to draw
+		\pgfmathsetmacro{\qlabels}{2}; % Number of q_n's to label
+		\begin{scope}
+			\coordinate (x) at (0,0);
+			\clip ($(x)+(135:7)$) rectangle ($(x)+(5,0)$);
+			\fill[lightgray] (x) -- ($(x)+(135:3)$) .. controls +(1,1) and +(-1,-0.5) .. ($(x)+(45:3)$) -- (x);
+			\draw (x) edge +(135:7) edge +(45:7);
+			\draw ($(x)+(135:3)$) .. controls +(1,1) and +(-1,-0.5) .. ($(x)+(45:3)$)
+				coordinate[pos=0.2] (q)
+				coordinate[pos=0.8] (qinf);
+			\draw (x) edge (q) edge (qinf);
+			\fill[lightgray!50!white] (q) -- +(110:4) -- +(70:4) --cycle;
+			\node[point] at (q) [label=below left:$q$] {};
+			\draw (q) edge +(110:4) edge +(70:4);
+			\draw[dotted] (qinf) edge +(110:4) edge +(70:4);
+			\foreach \n in {0, ...,\qpoints}
+			{
+				\coordinate (q\n) at ($(qinf) + (0,{2/(2^\n)})$) {};
+			}
+			\foreach \n in {0, ...,\qpoints}
+			{
+				\pgfmathsetmacro{\m}{\qpoints-\n}
+				\pgfmathparse{100/(mod(\m,2)+1)}
+				\fill[lightgray!\pgfmathresult!white] (q\m) -- +(110:4) -- +(70:4) --cycle;
+				\draw (q\m) edge +(110:4) edge +(70:4);
+				\node[point] at (q\m) {};
+			}
+			% \draw (qinf) -- (q0);
+			\draw node at ($(x) + (3,1)$) {$\us x^{\mathrm{NonPara}(X)}$} edge[->] ($(x) + (0,1.5)$);
+		\end{scope}
+		\foreach \n in {0,...,\qlabels}
+		{
+			\draw node at ($(qinf) + (0,{2/(2^\n)}) + (1.5,1)$) {$q_\n$} edge[->] (q\n);
+		}
+		\node[point] at (x) [label=right:$x$] {};
+	\end{tikzpicture}
+\end{equation*}
