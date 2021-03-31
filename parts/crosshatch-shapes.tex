@@ -94,7 +94,8 @@
 			}
 			\draw[fill=black] (0,0.5) rectangle ({5/(3*\leftits)},-0.5);
 		\end{scope}
-		\foreach \n in {1,...,{\rightits-1}}
+		\pgfmathsetmacro{\rightitsminus}{\rightits-1}
+		\foreach \n in {1,...,\rightitsminus} % Tikz at Maths doesn't like {\rightits-1}
 		{
 			\path[fill=white]
 				({\n*2},0.5) 
@@ -118,5 +119,53 @@
 			\node[draw, pattern=dots, outer sep=0pt,inner sep=0,minimum size=15] [label=right:{$\aleph_0$-dense}] {};
 			\node[draw, pattern=crosshatch, outer sep=0pt,inner sep=0,minimum size=15] [label=right:{$\aleph_1$-dense}] at (3,0) {};
 		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+
+\begin{equation*}
+	\index{foreach}
+	\index{if statement!ifthenelse}
+	\index{vartiable!pgfmathsetmacro}
+	\index{array}
+	\index{array!comparing values}
+	\index{patterns library}
+	\index{clip}
+	\index{path!partly rounded}
+	\index{limit visulasation}
+	\begin{tikzpicture}[xscale=1.3]
+		\def\subset{{1,0,0,1,0,0,1,1,1}}
+		\pgfmathsetmacro{\subsetmax}{8}
+		\draw[rounded corners=10] 
+			(8,0.5) -- (0,0.5) -- (0,-0.5) -- (8,-0.5);
+		\begin{scope}
+			\clip [rounded corners=10] (8,0.5) -- (0,0.5) -- (0,-0.5) -- (8,-0.5);
+			\fill[pattern=dots] (1,0.5) rectangle (8,-0.5);
+			\foreach \n in {0,...,\subsetmax}
+			{
+				\pgfmathsetmacro{\xmin}{{9*(1-atan((2*\n+1)/7)/90)-1}}
+				\pgfmathsetmacro{\xmax}{{9*(1-atan((2*\n+2)/7)/90)-1}}
+				\pgfmathsetmacro\subsetvalue{\subset[\n]}
+				\ifthenelse{\equal{\subsetvalue}{1}}
+				{
+					\draw[fill=black]
+						(\xmin,0.5) 
+							{[rounded corners=5] -- (\xmax,0.5)
+							-- (\xmax,-0.5)}
+							-- (\xmin,-0.5)
+							-- cycle;
+				}
+				{
+					\draw[fill=black, rounded corners=5]
+						(\xmin,0.5) 
+							-- (\xmax,0.5)
+							-- (\xmax,-0.5)
+							-- (\xmin,-0.5)
+							-- cycle;
+				}
+				\node at (0.6,0) {$\cdots$};
+			}
+		\end{scope}
+		\node at (4,-1) {$A=\{\subset,\ldots\}$};
 	\end{tikzpicture}
 \end{equation*}
