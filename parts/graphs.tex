@@ -42,6 +42,7 @@
 \end{equation*}
 
 \begin{equation*}
+	\index{every!node}
 	\begin{tikzpicture}[ scale=0.5]
 		\begin{scope}
 			\draw[every node/.style=point] 
@@ -660,5 +661,72 @@
 			\draw (0,{atan(\n/2)/90}) -- ++(1,1);
 		}
 		\draw (0,-1) -- (0,1);
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{multiline node text}
+	\index{path!negated}
+	\index{path!rounded}
+	\index{arrows!double}
+	\index{every!node}
+	\index{every!path}
+	\index{node on path!sloped}
+	\begin{tikzpicture}[xscale=4,yscale=1.5,every node/.style={align=center}]
+
+		\node (lR)	at (1,-0.2)	{\R-trees};
+
+		\node (Ra)	at (1,-1)	{(all)};
+		\node (Rs)	at (1,-2)	{seperable};
+		\node (Rks)	at (1,-3)	{$\kappa$-seperable};
+		\node (Rb)	at (1,-4.5)	{boundary-\\countable};
+		\node (Rbk)	at (1,-6.5)	{boundary-$\kappa$};
+
+		\node (lB)	at (2.5,-0.2)	{Branchwise-real order trees};
+
+		\node (Pa)	at (2,-1)	{parametrisable};
+		\node (Pcb)	at (2,-2)	{parametrisable,\\$\dim(\aleph_1,\aleph_1,\infty)$};
+		\node (Pkb)	at (2,-3)	{parametrisable,\\$\dim(\kappa^+,\kappa^+,\infty)$};
+		\node (Pct)	at (2,-4)	{parametrisable,\\$\dim(\aleph_1,\aleph_1,\aleph_1)$};
+		\node (Pcc)	at (2,-5)	{parametrisable,\\ccc};
+		\node (Pkt)	at (2,-6)	{parametrisable,\\$\dim(\kappa^+,\kappa^+,\kappa^+)$};
+		\node (Pkc)	at (2,-7)	{parametrisable,\\$\kappa$-cc};
+
+		\node (Ba)	at (3,-1)	{(all)};
+		\node (Bcb)	at (3,-2)	{$\dim(\aleph_1,\aleph_1,\infty)$};
+		\node (Bkb)	at (3,-3)	{$\dim(\kappa^+,\kappa^+,\infty)$};
+		\node (Bct)	at (3,-4)	{$\dim(\aleph_1,\aleph_1,\aleph_1)$};
+		\node (Bcc)	at (3,-5)	{ccc};
+		\node (Bkt)	at (3,-6)	{$\dim(\kappa^+,\kappa^+,\kappa^+)$};
+		\node (Bkc)	at (3,-7)	{$\kappa$-cc};
+
+		\begin{scope}[every path/.style={{To}-{To}}]
+			\draw (Ra)	-- (Pa);
+			\draw (Rs)	-- (Pcb);
+			\draw (Rks)	-- (Pkb);
+			\draw (Rb)	-- (Pct);
+			\draw (Rb)	-- (Pcc);
+			\draw (Rbk)	-- (Pkt);
+			\draw (Rbk)	-- (Pkc);
+		\end{scope}
+
+		\begin{scope}[every path/.style={double,Implies-Implies}]
+			\draw[negated] (Pa)	-- (Ba);
+			\draw (Pcb)	-- (Bcb);
+			\draw (Pkb)	-- node[above] {\textit{Indep.}} (Bkb);
+			\draw (Pct) -- (Pcc);
+			\draw (Pct) -- (Bct);
+			\draw (Pcc) -- node[above] {\textit{Indep.}} (Bcc);
+			\draw (Bct) -- node[above,sloped] {\textit{Indep.}} (Bcc);
+			\draw (Pkt) -- (Pkc);
+			\draw (Pkt) -- node[above] {\textit{Indep.}} (Bkt);
+			\draw (Pkc) -- node[above] {\textit{Indep.}} (Bkc);
+			\draw (Bkt) -- node[above,sloped] {\textit{Indep.}} (Bkc);
+		\end{scope}
+
+		\draw[dotted,rounded corners=20] (0.6,-0.6) rectangle (1.4,-7.4);
+
+		\draw[dotted,rounded corners=20] (1.6,-0.6) rectangle (3.4,-7.4);
+		
 	\end{tikzpicture}
 \end{equation*}

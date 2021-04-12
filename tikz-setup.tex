@@ -12,6 +12,7 @@
 	patterns,
 	patterns.meta,
 	decorations.pathreplacing,
+  decorations.markings,
 	calligraphy
 }
 
@@ -34,6 +35,15 @@
 \tikzgraphsset{
 	poset/.style={grow up=#1, branch right=#1, empty nodes, simple, nodes=point},
 	poset/.default=1cm
+}
+\tikzset{negated/.style={
+        decoration={markings,
+            mark= at position 0.5 with {
+                \node[transform shape] (tempnode) {$\backslash$};
+            }
+        },
+        postaction={decorate}
+    }
 }
 
 % Distance between points
