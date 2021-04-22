@@ -50,3 +50,65 @@
 		\node[point] at (x) [label=right:$x$] {};
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{path!curved}
+	\index{node on path}
+	\index{function plot}
+	\index{transformation!slant}
+	\begin{tikzpicture}
+		\begin{scope}
+			\filldraw[lightgray] (0,0) node[point] {} -- (-2,4) -- (0,4) --cycle; 
+			\draw[dotted] (0,0) -- (-2,4);
+			\draw[dotted] (0,0) -- (2,4);
+			\draw (0,3) node (Ca) {} -- (1.5,4) node (Cb) {};
+			\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt]
+				($(Cb) + (0.1,-0.1)$) -- node[below right] {$C$} ($(Ca) + (0.1,-0.1)$);
+			\node at (-0.75,3) {$\dom(\ell)$};
+		\end{scope}
+		\begin{scope}[xshift=-120, yshift=-110, scale=1.5]
+			\draw[->] (0,0) -- node[left] {$f$} (0,2);
+			\draw (0,0) node (a1a) {} -- (2,0) node (a1b) {};
+			\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt]
+				($(a1b) + (0,-0.1)$) -- node[yshift=-12] {$C$} ($(a1a) + (0,-0.1)$);
+			\begin{scope}
+				\draw (0,0) node (l1a) {} .. controls +(0.2,0) and (0.3,0.2) .. (0.5,0.2) node (l1b) {};
+			\end{scope}
+			\begin{scope}[yshift=10]
+				\draw (0.5,0.2) node (l1c) {} .. controls +(0.3,0) .. (1,0.3) node (l1d) {};
+			\end{scope}
+			\begin{scope}[yshift=15]
+				\draw (1,0.3) node (l1e) {} .. controls +(0,0.3) .. (1.5,0.6) node (l1f) {};
+			\end{scope}
+			\begin{scope}[yshift=30]
+				\draw (1.5,0.6) node (l1g) {} -- (2,0.8) node (l1h) {};
+			\end{scope}
+			\begin{scope}[every path/.style={lightgray, dotted}]
+				\draw (l1b) -- (l1c);
+				\draw (l1d) -- (l1e);
+				\draw (l1f) -- (l1g);
+			\end{scope}
+		\end{scope}
+		\begin{scope}[xshift=40, yshift=-110, scale=1.5]
+			\draw[->] (0,0) -- node[left] {$\wh \ell$} (0,2);
+			\draw (0,0) node (a2a) {} -- (2,0) node (a2b) {};
+			\draw[decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt]
+				($(a2b) + (0,-0.1)$) -- node[yshift=-12] {$C$} ($(a2a) + (0,-0.1)$);
+			\begin{scope}[yslant=0.35]
+				\draw (0,0) node (l1a) {} .. controls +(0.2,0) and (0.3,0.2) .. (0.5,0.2) node (l1b) {};
+				\draw (0.5,0.2) node (l1c) {} .. controls +(0.3,0) .. (1,0.3) node (l1d) {};
+				\draw (1,0.3) node (l1e) {} .. controls +(0,0.3) .. (1.5,0.6) node (l1f) {};
+				\draw (1.5,0.6) node (l1g) {} -- (2,0.8) node (l1g) {};
+			\end{scope}
+		\end{scope}
+		\begin{scope}[xshift=0, yshift=-110, scale=1.5]
+			\draw[->] (-0.4,0.8) -- (0.4,0.8);
+		\end{scope}
+		% \begin{scope}[every path/.style={dashed}]
+		% 	\draw (Ca) -- (a1a);
+		% 	\draw (Cb) -- (a1b);
+		% 	\draw (Ca) -- (a2a);
+		% 	\draw (Cb) -- (a2b);
+		% \end{scope}
+	\end{tikzpicture}
+\end{equation*}
