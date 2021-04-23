@@ -112,3 +112,55 @@
 		% \end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{path!partly rounded}
+	\index{array!two-dimensional}
+	\index{foreach}
+	\index{variable!pgfmathsetmacro}
+	\index{arrows!bar}
+	\begin{tikzpicture}
+		\def\twigs{{{0.0,0.1},{0.1,0.1},{0.3,0.15},{0.4,0.2},{0.5,0.3},{0.6,0.3},{0.7,0.4},{0.8,0.45}, {1.0,0.55},{1.2,0.6},{1.3,0.6},{1.5,0.7},{1.6,0.7},{1.7,0.75},{1.8,0.8},{1.9,0.8},{2.0,0.9}}}
+		% \def\twigs
+		\pgfmathsetmacro{\twigmax}{16}
+		\coordinate (p) at (0,0);
+		\begin{scope}[xscale=2, yscale=1, xshift=-30, yshift=100]
+			\filldraw[lightgray] (p) {[rounded corners=15] -- (0.8,0.5) -- (2.3,0.5)} -- cycle;
+			\foreach \i in {0,...,\twigmax}
+			{
+				\draw (\twigs[\i][0],0) node[point] (a\i) {} -- (\twigs[\i][0],\twigs[\i][1]);
+			}
+			\draw[dashed] (-0.2,0.5) -- (2.2,0.5);
+			\draw[Bar-Bar] (2.4,0) --node[right] {$2\ep$} (2.4,0.5) ;
+			\draw[brace]
+				(2,-0.2) -- node[yshift=-10] {$A^*$} (1,-0.2);
+			\draw[brace]
+				(2,-0.8) -- node[yshift=-10] {$A$} (0,-0.8);
+		\end{scope}
+		\node[point] at (p) {};
+		\draw[dotted] (p) edge (-4,4) edge (4,4);
+		\node at (0.4,1.5) {$Y^*$};
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{arrows!bar}
+	\begin{tikzpicture}
+		\begin{scope}[every node/.style={point}]
+			\node (p) at (0,0) [label=below:$p$] {};
+			\node (m) at (0,2) {};
+			\node (x) at (-2,4) [label=right:$x$] {};
+			\node (y) at (2,4) [label=left:$y$] {};
+		\end{scope}
+		\node (ml) at ($(m) + (1.5,-0.3)$) {$x \wedge y$};
+		\draw[->] (ml)  -- (m);
+		\draw (p) -- (m) -- (x);
+		\draw (m) -- (y);
+		\begin{scope}[every path/.style={blue,{Bar-Bar}}]
+			\draw ($(p)+(-0.6,0)$) -- node[left] {$\ell(x \wedge y)$} ($(m)+(-0.6,0)$);
+			\draw ($(p)+(-0.2,0)$) -- ($(m)+(-0.185,-0.077)$) -- node[below left] {$\ell(x)$} ($(x)+(-0.141,-0.141)$);
+			\draw ($(p)+(0.2,0)$) -- ($(m)+(0.185,-0.077)$) -- node[below right] {$\ell(y)$} ($(y)+(0.141,-0.141)$);
+			% \draw ($(p)+(-0.2,0)$) -- ($(m)+(-0.2,0)$) -- node[right left] {$\ell(x)$} ($(x)+(-0.141,-0.141)$);
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
