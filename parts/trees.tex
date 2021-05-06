@@ -164,3 +164,74 @@
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{variable!tikzmath}
+	\index{foreach!tikzmath}
+	\index{math library}
+	\index{library!math|see {math library}}
+	\index{every!node}
+	\index{every!path}
+	\begin{tikzpicture}[xscale=2, yscale=1.5]
+		\begin{scope}[every node/.style={point},every path/.style={thick}]
+			\node (o0) at (0,0) {};
+			\node (n0) at (-1,1) {};
+			\node (n000) at (-1.833,1.833) {};
+			\node (n01) at (-0.5,1.5) {};
+			\node (n010) at (-0.833,1.833) {};
+			\node (n011) at (-0.167,1.833) {};
+			\draw[blue] (o0) -- (n0) -- (n000);
+			\draw[red] (n0) -- (n01) -- (n011);
+			\draw[blue] (n01) -- (n010);
+			\begin{scope}[xshift=40]
+				\tikzmath{
+					coordinate \p;
+					\omegapoints = 10;
+					\p = (1,1);
+					\colour = 0;
+					\t = 1;
+					int \n; % Need this otherwise nodes get named like o1.0, while '\draw (o\n)' evaluates like '\draw (o1)', for some stupid reason.
+					for \n in {1,...,\omegapoints}{
+						{
+							\node (o\n) at (\p) {};
+						};
+						int \prev;
+						\prev = \n - 1;
+						if \colour==0 then {
+							\colour = 1;
+							\p = (\p) + ({-1/(\n+1)},{1/(\n+1)});
+							{
+								\draw[red] (o\prev) -- (o\n);
+							};
+						} else {
+							\colour = 0;
+							\p = (\p) + ({1/(\n+1)},{1/(\n+1)});
+							{
+								\draw[blue] (o\prev) -- (o\n);
+							};
+						};
+					};
+				}
+				\coordinate (top) at (0.693,3.1);
+			\end{scope}
+			\node (ninf) at ($(top) + (0,0.4)$) {};
+			\node (ninf0) at ($(top) + (-0.4,0.8)$) {};
+			\node (ninf1) at ($(top) + (0.4,0.8)$) {};
+			\draw[blue] (ninf) -- (ninf0);
+			\draw[red] (ninf) -- (ninf1);
+		\end{scope}
+		\node at ($(top) + (0,0.2)$) {$\vdots$};
+		\node [below=1pt of o0] {$()$};
+		\node [left=1pt of n0] {$((0,1))$};
+		\node [left=1pt of n000] {$((0,3))$};
+		\node [right=1pt of n01] {$((0,1),(1,1))$};
+		\node [right=1pt of n011] {$((0,1),(1,2))$};
+		\node [above=1pt of n010] {$((0,1),(1,1),(0,1))$};
+		% \node at ($(n010) + (-0.5,1)$) {$((0,1),(1,1),(0,1))$};
+		\node [right=1pt of o1] {$((1,1))$};
+		\node [left=1pt of o2] {$((1,1),(0,1))$};
+		\node [right=1pt of ninf] {$((1,1), (0,1), \ldots)$};
+		\node [left=1pt of ninf0] {$((1,1), (0,1), \ldots,(1,1))$};
+		\node [above=1pt of ninf1] {$((1,1), (0,1), \ldots,(0,1))$};
+	\end{tikzpicture}
+\end{equation*}
