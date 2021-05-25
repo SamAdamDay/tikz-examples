@@ -235,3 +235,133 @@
 		\node [above=1pt of ninf1] {$((1,1), (0,1), \ldots,(0,1))$};
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{node shaped as coordinate}
+	\index{decorations library!coloured}
+	\begin{tikzpicture}
+		\coordinate	(p) at (0,0);
+		\coordinate	(b) at (1,3);
+		\coordinate	(t) at (2,6);
+		\draw[blue] (p) --
+			node[shape=coordinate,pos=0.1] (a0) {}
+			node[shape=coordinate,pos=0.3] (a1) {}
+			node[shape=coordinate,pos=0.6] (a2) {}
+			node[shape=coordinate,pos=0.7] (a3) {}
+			node[shape=coordinate,pos=0.9] (a4) {}
+			node[shape=coordinate,pos=1.0] (a5) {}
+			(b);
+		\begin{scope}
+			\clip (-2,6) rectangle (1,0);
+			\foreach \n in {0,...,5}
+			{
+				\draw[gray] (a\n) -- ($(a\n)+(-2,6)$);
+			}
+		\end{scope}
+		\draw[blue] (b) -- (t);
+		\node at (2,6.5) {$B_\alpha$};
+
+		\draw[->] (3,3) -- node[midway, above] {$r_\alpha$} (5,3);
+
+		\draw[{Bar-Bar}] (7,0) -- (7,6);
+		\node at (7,6.5) {$\Q \cap [0,1]$};
+
+		\path (7,0) -- 
+			node[point,pos=0.2] (x0) {}
+			node[point,pos=0.25] {}
+			node[point,pos=0.4] {}
+			node[point,pos=0.55] {}
+			node[point,pos=0.6] {}
+			node[point,pos=0.65] {}
+			node[point,pos=0.8] {}
+			node[point,pos=0.9] (x1) {}
+			(7,6);
+
+		\draw[brace] ($(x1) + (0.5,0)$) -- node[midway, xshift=35] {$\{q_0, \ldots, q_n\}$} ($(x0) + (0.5,0)$);
+
+		\draw[thick, red] (b) -- (t);
+		\draw[brace, pen colour={red}] ($(t)+(0.5,0)$) -- node[midway, xshift=40, yshift=-4, red] {$B_\alpha \setminus \bigcup_{\beta<\alpha}B_\beta$} ($(b)+(0.5,0)$);
+
+		\path (b) -- 
+			node[point,pos=0.1] {}
+			node[point,pos=0.2] {}
+			node[point,pos=0.3] {}
+			node[point,pos=0.6] {}
+			node[point,pos=0.8] {}
+			(t);
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{array!listofitems}
+	\index{package!pgfplots|see pgfplots}
+	\index{package!listofitems|see array!listofitems}
+	\index{foreach!tikzmath}
+	\index{variable!tikzmath}
+	\index{math library}
+	\index{pgfplots}
+	\index{pgfplots!colormap}
+	\index{if statement!tikzmath}
+	\begin{tikzpicture}
+		\setsepchar{:/;/,}
+		\readlist\branches{0,red;20,blue;15,red;30,blue;10,blue:0,blue;15,red;20,blue;15,red;15,red}
+		\edef\brancheslen{\listlen\branches[1]}
+		\pgfplotsset{colormap={redblue}{color=(blue) color=(red)}}
+		\newcommand{\drawbranch}[6]{ % x, y, direction, size, colour, nodename
+			\begin{scope}[xshift=#1,yshift=#2,xscale=#3]
+				\begin{axis}[
+					hide axis,
+					point meta rel=per plot,
+					width=#4,
+					height=#4,
+					colormap name=redblue,
+					clip=false,
+					xmin=0,
+					ymin=0,
+					anchor=south west
+				]
+					\addplot[
+						mesh,
+						mark=none,
+						point meta={sin(1000/x))>0 ? 1 : 0},
+						colormap access=piecewise constant,
+						samples=200,
+						domain=0.00001:5,
+						ultra thick
+					] 
+						{x};
+					\node[point,minimum size=4,#5] at (0,0) (#6) {};
+				\end{axis}
+			\end{scope}
+		}
+		\drawbranch{0}{0}{-1}{100}{blue}{c0}
+		\drawbranch{-30}{30}{1}{198}{blue}{c1}
+		\drawbranch{0}{60}{-1}{165}{red}{c2}
+		% \drawbranch{10}{70}{1}{100}{blue}{c3}
+		\tikzmath{
+			real \x, \y;
+			int \dir;
+			int \branch;
+			for \branch in {1,2}{
+				if \branch==1 then {
+					\x = -60;
+					\dir = -1;
+				} else {
+					\x = 60;
+					\dir = 1;
+				};
+				\y = 120;
+				int \i;
+				for \i in {1,...,\brancheslen}{
+					\x = \x + \branches[\branch,\i,1]*\dir;
+					\y = \y + \branches[\branch,\i,1];
+					\dir = 0 - \dir;
+					let \col = \branches[\branch,\i,2];
+					{\drawbranch{\x}{\y}{\dir}{80}{\col}{b{\branch}n{\i}}};
+				};
+			};
+		}
+		\node[xshift=-35,yshift=230] {$\vdots$};
+		\node[xshift=65,yshift=220] {$\vdots$};
+	\end{tikzpicture}
+\end{equation*}
