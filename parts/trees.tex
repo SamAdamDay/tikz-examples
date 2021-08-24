@@ -302,6 +302,7 @@
 	\index{pgfplots}
 	\index{pgfplots!colormap}
 	\index{if statement!tikzmath}
+	\index{limit visualisation}
 	\begin{tikzpicture}
 		\setsepchar{:/;/,}
 		\readlist\branches{0,red;20,blue;15,red;30,blue;10,blue:0,blue;15,red;20,blue;15,red;15,red}
@@ -363,5 +364,30 @@
 		}
 		\node[xshift=-35,yshift=230] {$\vdots$};
 		\node[xshift=65,yshift=220] {$\vdots$};
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{foreach}
+	\index{variable!pgfmathsetmacro}
+	\index{limit visualisation}
+	\index{brace!with label}
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\xpoints}{8}; % Number of x_n's to draw
+		\coordinate (r) at (0,0);
+		\coordinate (t1) at (-2,4);
+		\coordinate (t2) at (2,4);
+		\draw[thick,red] (r) -- (t2);
+		\foreach \n in {0, ...,\xpoints}
+		{
+			\coordinate (x\n) at ($(r) + {0.75/(2^\n)}*(t2)$) {};
+			\draw[thick,red] (x\n) -- ($(x\n) + (2,1)$);
+			% \coordinate (x\n) at ($(r) + (t1)$);
+			% \coordinate (x) at ($(r) + 4*(t1)$);
+		}
+		\draw[thick,blue] (r) -- (t1);
+		\node[point,blue] at (r) {};
+		\draw[brace] ($(t1) + (-0.75,0.25)$) -- node[above=6pt,red] {Eloïse wins} ($(t1) + (0.75,0.25)$);
+		\draw[brace] ($(t2) + (-0.5,0.25)$) -- node[above=6pt,blue] {Abelard wins} ($(t2) + (2,0.25)$);
 	\end{tikzpicture}
 \end{equation*}
