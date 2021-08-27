@@ -443,3 +443,48 @@
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{brace!with label}
+	\index{calc!projection}
+	\begin{tikzpicture}
+		\begin{scope}[xscale=0.83]
+			\fill[lightgray] (-1.5,3) -- (0,0) -- (-3.5,3);
+			\draw (0.875,-1.05) -- (-2.5,3) node [above] {$\alpha_0$};
+			\fill[lightgray] (-1,3) -- (0,0) -- (3.25,3);
+			\draw (0,0) -- (1.75,3) node [above,xshift=0] {$\alpha_0 + 1$} node (t1) {};
+
+			\path (0,0) -- node[pos=0.6, shape=coordinate] (x1p) {} ($0.8*(t1)$) node (ti) {};
+
+			\fill[lightgray!30!white] ($(0,3)!(x1p)!(6,3) + (-1.5,0)$) -- (x1p) -- ($(0,3)!(x1p)!(6,3) + (-0.5,0)$);
+			\draw (x1p) -- node[pos=0.6, shape=coordinate] (x1) {} ($(0,3)!(x1p)!(6,3) + (-1,0)$) node [above] {$\alpha_0 + 2$};
+			\node[point] at (x1) [label=left:$x_1$] {};
+
+			\draw[very thick,{-|}] (0,0) -- node[pos=1,right=2pt] {$I$} (ti);
+			\node[point] at (x1p) [label=right:$x_1'$] {};
+
+			\draw[brace] (-1,3.7) -- node[above=4pt] {$C$} (3.25,3.7);
+
+			\node[point] at (0,0) [label=below left:$x_0$] {};
+		\end{scope}
+		\begin{scope}[xscale=0.83, xshift=220]
+			\fill[lightgray] (1,3) -- (0,0) -- (-3.25,3);
+			\draw (0.6125,-1.05) -- (-1.75,3) node [above, xshift=0] {$\beta_0$} node (ft1) {};
+			\fill[lightgray] (1.5,3) -- (0,0) -- (3.5,3);
+			\draw (0,0) -- (2.5,3) node [above] {$\beta_0 + 1$};
+
+			\path (0,0) -- node[pos=0.3, shape=coordinate] (fx1p) {} ($0.8*(ft1)$) node (fti) {};
+
+			\fill[lightgray!30!white] ($(0,3)!(fx1p)!(6,3) + (1,0)$) -- (fx1p) -- ($(0,3)!(fx1p)!(6,3) + (0,0)$);
+			\draw (fx1p) -- node[pos=0.6, shape=coordinate] (fx1) {} ($(0,3)!(fx1p)!(6,3) + (0.5,0)$) node [above] {$\beta_0 + 1$};
+			\node[point] at (fx1) [label=right:$f(x_1)$] {};
+
+			\draw[very thick,{-|}] (0,0) -- node[pos=1,left=2pt] {$f(I)$} (fti);
+			\node[point] at (fx1p) [label=left:$f(x_1')$] {};
+
+			\draw[brace] (-3.25,3.7) -- node[above=4pt] {$f(C)$} (1,3.7);
+
+			\node[point] at (0,0) [label=below left:$f(x_0)$] {};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
