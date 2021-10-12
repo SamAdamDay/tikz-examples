@@ -51,6 +51,15 @@
 \tikzset{
   brace/.style={decoration={calligraphic brace,amplitude=5pt}, decorate, line width=1.25pt}
 }
+\tikzset{
+  ->-/.style={
+    decoration={
+      markings,
+      mark=at position .5 with {\arrow{>}}
+    },
+    postaction={decorate}
+  }
+}
 
 
 % Distance between points

@@ -289,3 +289,78 @@
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
+
+\begin{equation*}
+	\index{foreach!change variable}
+	\index{variable!global}
+	\index{arrows!mid-line}
+	\index{clip}
+	\index{path!partly rounded}
+	\index{variable!pgfmathsetmacro}
+	\index{array!two-dimensional}
+	\index{decorations library}
+	\begin{tikzpicture}
+		\begin{scope}
+			\begin{scope}
+				\clip[rounded corners=3] (10,0) -- (0,0) -- (0,0.25) -- (10,0.25);
+				\def\cols{{{"black",0.05},{"green",0.03},{"black",0.04},{"blue",0.02},{"red",0.08},{"black",0.05},{"white",0.05},{"blue",0.1},{"white",0.09},{"green",0.1},{"red",0.1},{"white",0.05},{"blue",0.25},{"red",0.3},{"black",0.1},{"green",0.4},{"red",0.35},{"green",0.5},{"white",1},{"blue",0.75},{"black",0.2},{"red",1},{"blue",0.5},{"green",1.45},{"red",0.5},{"green",2}}}
+				\pgfmathsetmacro{\colmax}{25}
+				\pgfmathsetmacro{\xpos}{0}
+				\foreach \i in {0,...,\colmax}
+				{
+					\pgfmathsetmacro{\nextxpos}{\xpos+\cols[\i][1]}
+					\pgfmathsetmacro{\col}{\cols[\i][0]}
+					\fill[fill=\col] (\xpos,0) rectangle (\nextxpos,0.25);
+					\global\let\xpos=\nextxpos
+				}
+			\end{scope}
+			\draw[rounded corners=3] (10,0) -- (0,0) -- (0,0.25) -- (10,0.25);
+			\node at (-0.3,0.125) {$c$};
+			\draw (3.25,0) -- (3.25,0.25) node[above] (x) {$x$};
+			\node[right = 10pt of x, yshift=1pt] {$c(x) = \text{white}$};
+		\end{scope}
+		\begin{scope}[yscale=0.6,yshift=-35,xscale=0.5]
+			\node at (-1,0) {$p$};
+			\draw[->-]  (0,1) --  (0.0,-1);
+			\draw[->-]  (1,1) --  (0.5,-1);
+			\draw[->-]  (2,1) --  (0.8,-1);
+			\draw[->-]  (3,1) --  (2.0,-1);
+			\draw[->-]  (4,1) --  (4.2,-1);
+			\draw[->-]  (5,1) --  (4.4,-1);
+			\draw[->-]  (6,1) --  (4.5,-1);
+			\draw[->-]  (7,1) --  (6.8,-1);
+			\draw[->-]  (8,1) --  (8.0,-1);
+			\draw[->-]  (9,1) --  (9.1,-1);
+			\draw[->-] (10,1) -- (10.2,-1);
+			\draw[->-] (11,1) -- (12.0,-1);
+			\draw[->-] (12,1) -- (12.1,-1);
+			\draw[->-] (13,1) -- (12.3,-1);
+			\draw[->-] (14,1) -- (12.9,-1);
+			\draw[->-] (15,1) -- (16.0,-1);
+			\draw[->-] (16,1) -- (17.0,-1);
+			\draw[->-] (17,1) -- (18.0,-1);
+			\draw[->-] (18,1) -- (19.0,-1);
+			\draw[->-] (19,1) -- (19.5,-1);
+			\draw[->-] (20,1) -- (20.0,-1);
+		\end{scope}
+		\begin{scope}[yshift=-50]
+			\begin{scope}
+				\clip[rounded corners=3] (10,0) -- (0,0) -- (0,0.25) -- (10,0.25);
+				\def\cols{{{"blue",0.04},{"black",0.05},{"green",0.03},{"black",0.02},{"red",0.09},{"blue",0.08},{"white",0.05},{"black",0.05},{"red",0.1},{"white",0.1},{"green",0.25},{"white",0.11},{"black",0.1},{"blue",0.05},{"red",0.1},{"blue",0.6},{"green",0.75},{"red",0.4},{"green",0.35},{"red",0.5},{"white",0.2},{"black",1.45},{"red",1},{"blue",0.5},{"black",1.2},{"green",3},{"blue",0.8},{"white",0.9},{"black",1.1},{"red",4}}}
+				\pgfmathsetmacro{\colmax}{29}
+				\pgfmathsetmacro{\xpos}{0}
+				\foreach \i in {0,...,\colmax}
+				{
+					\pgfmathsetmacro{\nextxpos}{\xpos+\cols[\i][1]}
+					\pgfmathsetmacro{\col}{\cols[\i][0]}
+					\fill[fill=\col] (\xpos,0) rectangle (\nextxpos,0.25);
+					\global\let\xpos=\nextxpos
+				}
+			\end{scope}
+			\draw[rounded corners=3] (10,0) -- (0,0) -- (0,0.25) -- (10,0.25);
+			\node at (-0.3,0.125) {$d$};
+			\draw (2.3,0.25) -- (2.3,0) node[below] (px) {$p(x)$};
+			\node[right = 10pt of px] {$d(p(x)) = \text{green}$};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
