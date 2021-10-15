@@ -1,0 +1,1 @@
+This folder is required to build the document, since figures are externalised here to speed up compile time.

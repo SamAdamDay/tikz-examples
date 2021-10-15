@@ -18,6 +18,7 @@
 *.idx
 *.ilg
 *.ind
+*.dpth
 *.makefile
 *.figlist
 *.fdb_latexmk
@@ -29,4 +30,3 @@
 *.sublime-project
 *.sublime-workspace
 Literature
-figures
