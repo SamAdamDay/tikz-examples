@@ -303,6 +303,7 @@
 	\index{pgfplots!colormap}
 	\index{if statement!tikzmath}
 	\index{limit visualisation}
+	\index{path!variably coloured}
 	\begin{tikzpicture}
 		\setsepchar{:/;/,}
 		\readlist\branches{0,red;20,blue;15,red;30,blue;10,blue:0,blue;15,red;20,blue;15,red;15,red}
@@ -485,6 +486,114 @@
 			\draw[brace] (-3.25,3.7) -- node[above=4pt] {$f(C)$} (1,3.7);
 
 			\node[point] at (0,0) [label=below left:$f(x_0)$] {};
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{every!path}
+	\index{node on path!fraction position}
+	\index{limit visualisation}
+	\index{colourblind pallette}
+	\begin{tikzpicture}
+		% Root node
+		\node[point] at (0,0) [label=below:{root}] (r) {};
+		% Left branch
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (r)  -- node[dot, pos=0.500] (a1) {} ++(-3,1);
+			\draw[pallette5] (a1) -- node[dot, pos=0.333] (a2) {} ++(1,2);
+			\draw[pallette1] (a2) -- node[dot, pos=0.250] (a3) {} ++(-1,2);
+			\draw[pallette3] (a3) -- node[dot, pos=0.200] (a4) {} ++(1,2);
+			\draw[pallette6] (a4) -- node[dot, pos=0.167] (a5) {} ++(-1,2);
+			\draw[pallette5] (a5) -- node[dot, pos=0.143] (a6) {} ++(1,2);
+			\draw[pallette1] (a6) -- node[dot, pos=0.125] (a7) {} ++(-1,2);
+			\draw[pallette3] (a7) -- node[dot, pos=0.111] (a8) {} ++(1,2);
+		\end{scope}
+		\node [above=10pt of a7] (ad) {$\vdots$};
+		% Right branch
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (r)  -- node[dot, pos=0.500] (b1) {} ++(3,1);
+			\draw[pallette5] (b1) -- node[dot, pos=0.333] (b2) {} ++(-1,2);
+			\draw[pallette1] (b2) -- node[dot, pos=0.250] (b3) {} ++(1,2);
+			\draw[pallette3] (b3) -- node[dot, pos=0.200] (b4) {} ++(-1,2);
+			\draw[pallette6] (b4) -- node[dot, pos=0.167] (b5) {} ++(1,2);
+			\draw[pallette5] (b5) -- node[dot, pos=0.143] (b6) {} ++(-1,2);
+			\draw[pallette1] (b6) -- node[dot, pos=0.125] (b7) {} ++(1,2);
+			\draw[pallette3] (b7) -- node[dot, pos=0.111] (b8) {} ++(-1,2);
+		\end{scope}
+		\node [above=10pt of b7] (bd) {$\vdots$};
+		\node[point] [above=1pt of bd] (bw) {};
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (bw)  -- node[dot, pos=0.2] (bw1) {} ++(1,2);
+			\draw[pallette5] (bw1) -- node[dot, pos=0.333] (bw2) {} ++(-1,2);
+		\end{scope}
+	\end{tikzpicture}
+\end{equation*}
+
+\begin{equation*}
+	\index{every!node}
+	\index{every!path}
+	\index{node on path!fraction position}
+	\index{limit visualisation}
+	\index{path!variably coloured}
+	\index{colourblind pallette}
+	\begin{tikzpicture}
+		% Root node
+		\node[point] at (0,0) [label=below:{root}] (r) {};
+
+		% Left branch
+		\begin{scope}[every node/.style={shape=coordinate}]
+			\path (r)  -- node[pos=0.500] (a1) {} ++(-3,1) node (a1t) {};
+			\path (a1) -- node[pos=0.333] (a2) {} ++(1,2) node (a2t) {};
+			\path (a2) -- node[pos=0.250] (a3) {} ++(-1,2) node (a3t) {};
+			\path (a3) -- node[pos=0.200] (a4) {} ++(1,2) node (a4t) {};
+			\path (a4) -- node[pos=0.167] (a5) {} ++(-1,2) node (a5t) {};
+			\path (a5) -- node[pos=0.143] (a6) {} ++(1,2) node (a6t) {};
+			\path (a6) -- node[pos=0.125] (a7) {} ++(-1,2) node (a7t) {};
+			\path (a7) -- node[pos=0.111] (a8) {} ++(1,2) node (a8t) {};
+		\end{scope}
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (r) -- (a1); \draw[pallette5] (a1) -- (a1t);
+			\draw[pallette6] (a1) -- (a2); \draw[pallette5] (a2) -- (a2t);
+			\draw[pallette6] (a2) -- (a3); \draw[pallette5] (a3) -- (a3t);
+			\draw[pallette6] (a3) -- (a4); \draw[pallette5] (a4) -- (a4t);
+			\draw[pallette6] (a4) -- (a5); \draw[pallette5] (a5) -- (a5t);
+			\draw[pallette6] (a5) -- (a6); \draw[pallette5] (a6) -- (a6t);
+			\draw[pallette6] (a6) -- (a7); \draw[pallette5] (a7) -- (a7t);
+			\draw[pallette6] (a7) -- (a8); \draw[pallette5] (a8) -- (a8t);
+		\end{scope}
+		\node [above=10pt of a7] (ad) {$\vdots$};
+
+		% Right branch
+		\begin{scope}[every node/.style={shape=coordinate}]
+			\path (r)  -- node[pos=0.500] (b1) {} ++(3,1) node (b1t) {};
+			\path (b1) -- node[pos=0.333] (b2) {} ++(-1,2) node (b2t) {};
+			\path (b2) -- node[pos=0.250] (b3) {} ++(1,2) node (b3t) {};
+			\path (b3) -- node[pos=0.200] (b4) {} ++(-1,2) node (b4t) {};
+			\path (b4) -- node[pos=0.167] (b5) {} ++(1,2) node (b5t) {};
+			\path (b5) -- node[pos=0.143] (b6) {} ++(-1,2) node (b6t) {};
+			\path (b6) -- node[pos=0.125] (b7) {} ++(1,2) node (b7t) {};
+			\path (b7) -- node[pos=0.111] (b8) {} ++(-1,2) node (b8t) {};
+		\end{scope}
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (r) -- (b1); \draw[pallette5] (b1) -- (b1t);
+			\draw[pallette6] (b1) -- (b2); \draw[pallette5] (b2) -- (b2t);
+			\draw[pallette6] (b2) -- (b3); \draw[pallette5] (b3) -- (b3t);
+			\draw[pallette6] (b3) -- (b4); \draw[pallette5] (b4) -- (b4t);
+			\draw[pallette6] (b4) -- (b5); \draw[pallette5] (b5) -- (b5t);
+			\draw[pallette6] (b5) -- (b6); \draw[pallette5] (b6) -- (b6t);
+			\draw[pallette6] (b6) -- (b7); \draw[pallette5] (b7) -- (b7t);
+			\draw[pallette6] (b7) -- (b8); \draw[pallette5] (b8) -- (b8t);
+		\end{scope}
+		\node [above=10pt of b7] (bd) {$\vdots$};
+		\node[point, pallette6] [above=1pt of bd] (bw) {};
+		\begin{scope}[every node/.style={shape=coordinate}]
+			\path (bw)  -- node[pos=0.2] (bw1) {} ++(1,2) node (bw1t) {};
+			\path (bw1) -- node[pos=0.333] (bw2) {} ++(-1,2) node (bw2t) {};
+		\end{scope}
+		\begin{scope}[every path/.style={thick}]
+			\draw[pallette6] (bw) -- (bw1); \draw[pallette5] (bw1) -- (bw1t);
+			\draw[pallette6] (bw1) -- (bw2); \draw[pallette5] (bw2) -- (bw2t);
 		\end{scope}
 	\end{tikzpicture}
 \end{equation*}

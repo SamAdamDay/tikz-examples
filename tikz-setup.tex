@@ -29,11 +29,31 @@
 \AtBeginEnvironment{tikzcd}{\tikzexternaldisable}
 \AtEndEnvironment{tikzcd}{\tikzexternalenable}
 
+% Wong colourblind pallet
+\definecolor{pallette_orange}{RGB}{230, 159, 0}
+\definecolor{pallette_skyblue}{RGB}{86, 180, 233}
+\definecolor{pallette_bluishgreen}{RGB}{0, 158, 115}
+\definecolor{pallette_yellow}{RGB}{240, 228, 66}
+\definecolor{pallette_blue}{RGB}{0, 114, 178}
+\definecolor{pallette_vermillion}{RGB}{213, 94, 0}
+\definecolor{pallette_reddishpurple}{RGB}{204, 121, 167}
+
+% Wong colourblind pallet using numbers instead of names
+\definecolor{pallette0}{RGB}{0, 0, 0}
+\definecolor{pallette1}{RGB}{230, 159, 0}
+\definecolor{pallette2}{RGB}{86, 180, 233}
+\definecolor{pallette3}{RGB}{0, 158, 115}
+\definecolor{pallette4}{RGB}{240, 228, 66}
+\definecolor{pallette5}{RGB}{0, 114, 178}
+\definecolor{pallette6}{RGB}{213, 94, 0}
+\definecolor{pallette7}{RGB}{204, 121, 167}
+
 % Tikz styles
 \tikzset{
 	world/.style={draw,circle,outer sep=0pt,inner sep=0,minimum size=15},
 	point/.style={draw=black,fill=black,opacity=1,circle,outer sep=0pt,inner sep=0,minimum size=2},
-	facefill/.style={fill=blue!20,fill opacity=0.4}
+	facefill/.style={fill=blue!20,fill opacity=0.4},
+	dot/.style={draw=black,fill=black,opacity=0,circle,outer sep=0pt,inner sep=0}
 }
 \tikzgraphsset{
 	poset/.style={grow up=#1, branch right=#1, empty nodes, simple, nodes=point},
