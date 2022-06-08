@@ -1,4 +1,3 @@
-*.pdf
 *.log
 *.aux
 *.lyx~
@@ -30,3 +29,4 @@
 *.sublime-project
 *.sublime-workspace
 Literature
+figures
