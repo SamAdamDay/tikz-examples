@@ -26,6 +26,7 @@
 *.png
 *.djvu
 *.run.xml
+*.synctex(busy)
 *.sublime-project
 *.sublime-workspace
 Literature
