@@ -145,9 +145,16 @@
 			{
 				\pgfmathsetmacro{\xmin}{{9*(1-atan((2*\n+1)/7)/90)-1}}
 				\pgfmathsetmacro{\xmax}{{9*(1-atan((2*\n+2)/7)/90)-1}}
+				\pgfmathsetmacro{\xmed}{{(\xmin+\xmax)/2}}
 				\pgfmathsetmacro\subsetvalue{\subset[\n]}
 				\ifthenelse{\equal{\subsetvalue}{1}}
 				{
+					\path[fill=white]
+						(\xmin,0.5) 
+							{[rounded corners=5] -- (\xmax,0.5)
+							-- (\xmax,-0.5)}
+							-- (\xmin,-0.5)
+							-- cycle;
 					\draw[fill=black]
 						(\xmin,0.5) 
 							{[rounded corners=5] -- (\xmax,0.5)
@@ -156,6 +163,12 @@
 							-- cycle;
 				}
 				{
+					\path[fill=white, rounded corners=5]
+						(\xmin,0.5) 
+							-- (\xmax,0.5)
+							-- (\xmax,-0.5)
+							-- (\xmin,-0.5)
+							-- cycle;
 					\draw[fill=black, rounded corners=5]
 						(\xmin,0.5) 
 							-- (\xmax,0.5)
@@ -163,10 +176,41 @@
 							-- (\xmin,-0.5)
 							-- cycle;
 				}
-				\node at (0.6,0) {$\cdots$};
+				\coordinate (i\n) at (\xmed,-0.5);
 			}
+			\node at (0.6,0) {$\cdots$};
 		\end{scope}
-		\node at (4,-1) {$A=\{\subset,\ldots\}$};
+		\begin{scope}[yshift=-70]
+			\node at (0.5,0) {$A:$};
+			\node (a0) at (6.5,0) {$0$};
+			\node (a1) at (6.0,0) {$1$};
+			\node (a2) at (5.5,0) {$2$};
+			\node (a3) at (5.0,0) {$3$};
+			\node (a4) at (4.5,0) {$4$};
+			\node (a5) at (4.0,0) {$5$};
+			\node (a6) at (3.5,0) {$6$};
+			\node (a7) at (3.0,0) {$7$};
+			\node (a8) at (2.5,0) {$8$};
+			\node at (1,0) {$\bigg[$};
+			\node at (7,0) {$\bigg]$};
+			\node at (1.75,0) {$\cdots$};
+			\begin{scope}[every node/.style={draw, circle, minimum size=15pt}]
+				\node (a0c) at (a0) {};
+				\node[white] (a1c) at (a1) {};
+				\node[white] (a2c) at (a2) {};
+				\node (a3c) at (a3) {};
+				\node[white] (a4c) at (a4) {};
+				\node[white] (a5c) at (a5) {};
+				\node (a6c) at (a6) {};
+				\node (a7c) at (a7) {};
+				\node (a8c) at (a8) {};
+			\end{scope}
+			\foreach \n in {0,...,\subsetmax}
+			{
+				\draw[->] (a\n c) -- ($(i\n)-(0,0.1)$);
+			}
+			\node at (4,-1) {$A = \{\ldots, 8, 7 ,6, 3, 0\}$};
+		\end{scope}
 	\end{tikzpicture}
 \end{equation*}
 
