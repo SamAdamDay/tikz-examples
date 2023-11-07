@@ -734,3 +734,103 @@
 		
 	\end{tikzpicture}
 \end{equation*}
+
+
+\begin{equation*}
+	\index{every!node}
+	\index{every!cancelling every}
+	\index{polar coordinates}
+	\index{foreach}
+	\index{path!cycle}
+    \begin{tikzpicture}
+        \tikzset{
+            vertex/.style={draw,fill,circle,outer sep=0pt,inner sep=0,minimum size=3}
+        }
+        \begin{scope}[every node/.style={vertex, red}]
+            \begin{scope}[xshift=-50, every node/.style={}]
+                \node {$\llbracket M \rrbracket = P$};
+            \end{scope}
+            \draw[dashed,rounded corners=15] (-0.7,0.7) rectangle (9,-0.7);
+            \begin{scope}
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,5} {
+                    -- (\x*360/5:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=40]
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,6} {
+                    -- (\x*360/6:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=80]
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,7} {
+                    -- (\x*360/7:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=120]
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,8} {
+                    -- (\x*360/8:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=160]
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,9} {
+                    -- (\x*360/9:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=200]
+                \draw (0:0.4) node {}
+                \foreach \x in {1,...,10} {
+                    -- (\x*360/10:0.4) node {}
+                } -- cycle;
+            \end{scope}
+            \begin{scope}[xshift=240, every node/.style={}]
+                \node {$\cdots$};
+            \end{scope}
+        \end{scope}
+        \begin{scope}[every node/.style={vertex, blue}, yshift=-40]
+            \begin{scope}
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,4} {
+                    -- (\x*210/4:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=40]
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,5} {
+                    -- (\x*210/5:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=80]
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,6} {
+                    -- (\x*210/6:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=120]
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,7} {
+                    -- (\x*210/7:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=160]
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,8} {
+                    -- (\x*210/8:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=200]
+                \draw (0:0.4) node[vertex] {}
+                \foreach \x in {1,...,9} {
+                    -- (\x*210/9:0.4) node[vertex] {}
+                };
+            \end{scope}
+            \begin{scope}[xshift=240, every node/.style={}]
+                \node {$\cdots$};
+            \end{scope}
+        \end{scope}
+    \end{tikzpicture}
+\end{equation*}
